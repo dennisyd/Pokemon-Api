@@ -17,5 +17,13 @@
     <Folder Include="DatabaseModels\" />
     <Folder Include="DatabaseModels\Pokemon\" />
     <Folder Include="DatabaseModels\Moves\" />
+    <Folder Include="Functions\" />
+    <Folder Include="DamageCalculator\" />
+    <Folder Include="DamageCalculator\DamageMultipliers\" />
+    <Folder Include="DatabaseModels\DamageMultiplier\" />
+    <Folder Include="ResponseModels\" />
+    <Folder Include="RequestModels\" />
+    <Folder Include="DataBaseInterface\" />
+    <Folder Include="PokemonBuilder\" />
   </ItemGroup>
 </Project>
