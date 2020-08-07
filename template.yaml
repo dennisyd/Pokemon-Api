@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    Pokemon_API
+    
+    pokemon_api
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+    Function:
+        Runtime: dotnetcore2.1
+        Timeout: 10
+
+Resources:
+
+    Pokemon_APIFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: ./artifacts/Pokemon_API.zip
+            Handler: Pokemon_API::Pokemon_API.Function::FunctionHandler
+            Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+                Variables:
+                    PARAM1: VALUE # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+            Events:
+                CatchAll:
+                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Properties:
+                        Path: /{proxy+}
+                        Method: any 
+
+Outputs:
+
+    Pokemon_APIURL:
+      Description: "API Gateway endpoint URL for Prod environment for Pokemon_API Function"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/proxy"
+
+    Pokemon_APIFunctionArn:
+      Description: "Pokemon_API Lambda Function ARN"
+      Value: !GetAtt Pokemon_APIFunction.Arn
+
+    Pokemon_APIFunctionIamRole:
+      Description: "Implicit IAM Role created for Pokemon_API function"
+      Value: !GetAtt Pokemon_APIFunctionRole.Arn
