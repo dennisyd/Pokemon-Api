@@ -2,7 +2,7 @@
 
 using NewtonSoft.JSON;
 
-namespace Pokemon_API.DatabaseModels
+namespace Pokemon_API.DatabaseModels.Pokemon
 {
     public class GenderRatio
     {

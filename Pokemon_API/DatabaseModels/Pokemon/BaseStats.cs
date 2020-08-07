@@ -2,7 +2,7 @@
 
 using Newtonsoft.JSON;
 
-namespace Pokemon_API.DatabaseModels
+namespace Pokemon_API.DatabaseModels.Pokemon
 {
     public class BaseStats
     {

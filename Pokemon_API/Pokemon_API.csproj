@@ -15,5 +15,7 @@
   
   <ItemGroup>
     <Folder Include="DatabaseModels\" />
+    <Folder Include="DatabaseModels\Pokemon\" />
+    <Folder Include="DatabaseModels\Moves\" />
   </ItemGroup>
 </Project>
