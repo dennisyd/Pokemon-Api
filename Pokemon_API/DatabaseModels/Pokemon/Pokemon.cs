@@ -1,55 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Newtonsoft.JSON;
+using Newtonsoft.Json;
 
 namespace Pokemon_API.DatabaseModels.Pokemon
 {
     public class Pokemon
     {
-        //[JsonProperty(propertyName="id", order = 1)]
+        [JsonProperty(PropertyName="id", Order = 1)]
         public int Id { get; set; }
 
-        //[JsonProperty(propertyName="name", order = 2)]
+        [JsonProperty(PropertyName="name", Order = 2)]
         public string Name { get; set; }
 
-        //[JsonProperty(propertyName = "number", order = 3)]
+        [JsonProperty(PropertyName = "number", Order = 3)]
         public string Number { get; set; }
 
-        //[JsonProperty(propertyName = "species", order = 4)]
+        [JsonProperty(PropertyName = "species", Order = 4)]
         public string Species { get; set; }
 
-        //[JsonProperty(propertyName = "genderRatio", order = 5)]
+        [JsonProperty(PropertyName = "genderRatio", Order = 5)]
         public GenderRatio GenderRatio { get; set; }
 
-        //[JsonProperty(propertyName = "baseStats", order = 6)]
+        [JsonProperty(PropertyName = "baseStats", Order = 6)]
         public BaseStats BaseStats { get; set; }
 
-        //[JsonProperty(propertyName = "moves", order = 7)]
+        [JsonProperty(PropertyName = "moves", Order = 7)]
         public List<Moves> Moves { get; set; }
 
-        //[JsonProperty(propertyName = "abilities", order = 8)]
+        [JsonProperty(PropertyName = "abilities", Order = 8)]
         public List<string> Abilities { get; set; }
 
-        //[JsonProperty(propertyName = "height", order = 9)]
+        [JsonProperty(PropertyName = "height", Order = 9)]
         public float Height { get; set; }
 
-        //[JsonProperty(propertyName = "weight", order = 10)]
+        [JsonProperty(PropertyName = "weight", Order = 10)]
         public float Weight { get; set; }
 
-        //[JsonProperty(propertyName = "color", order = 11)]
+        [JsonProperty(PropertyName = "color", Order = 11)]
         public string Color { get; set; }
 
-        //[JsonProperty(propertyName = "previousEvolution", order = 12)]
+        [JsonProperty(PropertyName = "previousEvolution", Order = 12)]
         public string PreviousEvolution { get; set; }
 
-        //[JsonProperty(propertyName = "evolutions", order = 13)]
+        [JsonProperty(PropertyName = "evolutions", Order = 13)]
         public List<string> Evolutions { get; set; }
 
-        //[JsonProperty(propertyName = "evolutionLevel", order = 14)]
+        [JsonProperty(PropertyName = "evolutionLevel", Order = 14)]
         public int EvolutionLevel { get; set; }
 
-        //[JsonProperty(propertyName = "eggGroups", order = 15)]
+        [JsonProperty(PropertyName = "eggGroups", Order = 15)]
         public List<string> EggGroups { get; set; }
 
         public Pokemon()

@@ -1,18 +1,18 @@
 ﻿using System;
 
-using Newtonsoft.JSON;
+using Newtonsoft.Json;
 
 namespace Pokemon_API.DatabaseModels.Pokemon
 {
     public class Abilities
     {
-        //[JsonProperty(propertyName="id", order = 1)]
+        [JsonProperty(PropertyName="id", Order = 1)]
         public int Id { get; set; }
 
-        //[JsonProperty(propertyName="pokemonNumber", order = 2)]
+        [JsonProperty(PropertyName="pokemonNumber", Order = 2)]
         public int PokemonNumber { get; set; }
 
-        //[JsonProperty(propertyName="ability", order = 3)]
+        [JsonProperty(PropertyName="ability", Order = 3)]
         public string Ability { get; set; }
 
         public Abilities()
