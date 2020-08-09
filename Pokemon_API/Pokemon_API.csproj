@@ -12,6 +12,7 @@
     <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="1.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />   
     <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
   </ItemGroup>
   
   <ItemGroup>
@@ -26,5 +27,9 @@
     <Folder Include="RequestModels\" />
     <Folder Include="DataBaseInterface\" />
     <Folder Include="PokemonBuilder\" />
+    <Folder Include="PokemonModels\" />
+    <Folder Include="DataBaseInterface\Pokemon\" />
+    <Folder Include="DataBaseInterface\Moves\" />
+    <Folder Include="DataBaseInterface\DamageMultiplier\" />
   </ItemGroup>
 </Project>

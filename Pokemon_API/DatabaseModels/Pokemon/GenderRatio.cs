@@ -9,10 +9,13 @@ namespace Pokemon_API.DatabaseModels.Pokemon
         [JsonProperty(PropertyName="id", Order = 1)]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName="male", Order = 2)]
+        [JsonProperty(PropertyName = "pokemonNumber", Order = 2)]
+        public int PokemonNumber { get; set; }
+
+        [JsonProperty(PropertyName="male", Order = 3)]
         public float Male { get; set; }
 
-        [JsonProperty(PropertyName="female", Order = 3)]
+        [JsonProperty(PropertyName="female", Order = 4)]
         public float Female { get; set; }
 
         public GenderRatio()

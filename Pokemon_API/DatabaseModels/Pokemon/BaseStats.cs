@@ -9,22 +9,25 @@ namespace Pokemon_API.DatabaseModels.Pokemon
         [JsonProperty(PropertyName="id", Order = 1)]
         public int Id { get; set; }
 
-        [JsonProperty(PropertyName="hp", Order = 2)]
+        [JsonProperty(PropertyName = "pokemonNumber", Order = 2)]
+        public int PokemonNumber { get; set; }
+
+        [JsonProperty(PropertyName="hp", Order = 3)]
         public int Hp { get; set; }
 
-        [JsonProperty(PropertyName="attack", Order = 3)]
+        [JsonProperty(PropertyName="attack", Order = 4)]
         public int Attack { get; set; }
 
-        [JsonProperty(PropertyName="defense", Order = 4)]
+        [JsonProperty(PropertyName="defense", Order = 5)]
         public int Defense { get; set; }
 
-        [JsonProperty(PropertyName="specialAttack", Order = 5)]
+        [JsonProperty(PropertyName="specialAttack", Order = 6)]
         public int SpecialAttack { get; set; }
 
-        [JsonProperty(PropertyName="specialDefense", Order = 6)]
+        [JsonProperty(PropertyName="specialDefense", Order = 7)]
         public int SpecialDefense { get; set; }
 
-        [JsonProperty(PropertyName="speed", Order = 7)]
+        [JsonProperty(PropertyName="speed", Order = 8)]
         public int Speed { get; set; }
 
 

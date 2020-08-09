@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
@@ -30,7 +31,7 @@ namespace Pokemon_API.DatabaseModels.Moves
         [JsonProperty(PropertyName = "shortDescription", Order = 8)]
         public string ShortDescription { get; set; }
 
-        [JsonProperty(PropertyName = "PP", Order = 9)]
+        [JsonProperty(PropertyName = "pp", Order = 9)]
         public int PP { get; set; }
 
         [JsonProperty(PropertyName = "priority", Order = 10)]

@@ -9,8 +9,8 @@ namespace Pokemon_API.DatabaseModels.Moves
         [JsonProperty(PropertyName="id", Order = 1)]
         public int Id { get; set; }
 
-        [JsonProperty(PropertyName="moveId", Order = 2)]
-        public int MoveId { get; set; }
+        [JsonProperty(PropertyName="moveNumber", Order = 2)]
+        public int MoveNumber { get; set; }
 
         [JsonProperty(PropertyName="flag", Order = 3)]
         public string Flag { get; set; }
