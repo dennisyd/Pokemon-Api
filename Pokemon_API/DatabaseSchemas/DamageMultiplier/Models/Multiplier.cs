@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Pokemon_API.DatabaseSchemas.DamageMultiplier.Models
 {
-    public class DamageMultiplier
+    public class Multiplier
     {
         [JsonProperty(PropertyName="id", Order = 1)]
         public int Id{ get; set; }
@@ -66,7 +66,7 @@ namespace Pokemon_API.DatabaseSchemas.DamageMultiplier.Models
         [JsonProperty(PropertyName="fairy", Order = 20)]
         public float Fairy{ get; set; }
 
-        public DamageMultiplier()
+        public Multiplier()
         {
         }
     }

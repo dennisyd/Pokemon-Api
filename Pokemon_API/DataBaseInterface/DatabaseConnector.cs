@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 
 namespace Pokemon_API.DataBaseInterface
 {
-    internal class DatabaseConnector
+    public class DatabaseConnector
     {
         protected string Password = "pE#31$5u1P0425";
         protected string Username = "admin";
