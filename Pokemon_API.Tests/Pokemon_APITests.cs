@@ -10,6 +10,8 @@ using Amazon.Lambda.APIGatewayEvents;
 
 using Pokemon_API;
 
+using Pokemon_API.DataBaseInterface;
+
 namespace Pokemon_API.Tests
 {
     public class Pokemon_APITests
@@ -19,16 +21,25 @@ namespace Pokemon_API.Tests
         }
 
         [Fact]
-        public void TestFunctionHandlerMethod()
-        {
-            var function = new Function();
-            var request = new APIGatewayProxyRequest();
-            var context = new TestLambdaContext();
-            
-            var response = function.FunctionHandler(request, context);
-            
-            Assert.Equal(200, response.StatusCode);
-            Assert.StartsWith("{\"message\":\"hello world\",\"location\":", response.Body);
+        public async void TestDBSchemaConnections() {
+            DatabaseConnector connection;
+            bool isConnected = false;
+
+            connection = DatabaseSchemas.DamageMultiplier.Interface.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
+
+            connection = DatabaseSchemas.Moves.Interface.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
+
+            connection = DatabaseSchemas.Moves.Interface.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
         }
+
     }
 }
