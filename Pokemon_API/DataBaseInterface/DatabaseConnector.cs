@@ -47,7 +47,7 @@ namespace Pokemon_API.DataBaseInterface
             return connection.State == System.Data.ConnectionState.Open;
         }
 
-        public async void Disconnect()
+        public async Task Disconnect()
         {
             await connection.CloseAsync();
         }
