@@ -5,15 +5,15 @@ using MySql.Data.MySqlClient;
 
 using Pokemon_API.DataBaseInterface;
 
-namespace Pokemon_API.DatabaseSchemas.Moves.Queries
+namespace Pokemon_API.DatabaseSchemas.Pokemon.Queries
 {
-    public class Flags : ITableQueries<Models.Flags>, ITableQueriesAll<Models.Flags>
+    public class EggGroups : ITableQueries<Models.EggGroups>, ITableQueriesAll<Models.EggGroups>
     {
-        private string TableName = "Flags";
+        private string TableName = "EggGroups";
 
-        public Flags() { }
+        public EggGroups() { }
 
-        public async Task<List<Models.Flags>> GetAll(int number)
+        public async Task<List<Models.EggGroups>> GetAll(int number)
         {
             var connection = Interface.GetDatabaseConnector();
             if (await connection.IsConnected())
@@ -24,7 +24,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Queries
             return null;
         }
 
-        public async Task<Models.Flags> Get(int number)
+        public async Task<Models.EggGroups> Get(int number)
         {
             var connection = Interface.GetDatabaseConnector();
             if (await connection.IsConnected())
@@ -35,7 +35,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Queries
             return null;
         }
 
-        public async Task<Models.Flags> Insert(Models.Flags obj)
+        public async Task<Models.EggGroups> Insert(Models.EggGroups obj)
         {
             var connection = Interface.GetDatabaseConnector();
             if (await connection.IsConnected())

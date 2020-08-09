@@ -8,26 +8,27 @@ namespace Pokemon_API.PokemonModels
 {
     public class Pokemon
     {
-        [JsonProperty(PropertyName = "id", Order = 1)]
-        public int Id { get; set; }
 
-        [JsonProperty(PropertyName = "name", Order = 2)]
+        [JsonProperty(PropertyName = "name", Order = 1)]
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "number", Order = 3)]
+        [JsonProperty(PropertyName = "number", Order = 2)]
         public string Number { get; set; }
 
-        [JsonProperty(PropertyName = "species", Order = 4)]
+        [JsonProperty(PropertyName = "species", Order = 3)]
         public string Species { get; set; }
 
-        [JsonProperty(PropertyName = "genderRatio", Order = 5)]
+        [JsonProperty(PropertyName = "genderRatio", Order = 4)]
         public GenderRatio GenderRatio { get; set; }
 
-        [JsonProperty(PropertyName = "baseStats", Order = 6)]
+        [JsonProperty(PropertyName = "baseStats", Order = 5)]
         public BaseStats BaseStats { get; set; }
 
-        [JsonProperty(PropertyName = "moves", Order = 7)]
-        public List<Moves> Moves { get; set; }
+        [JsonProperty(PropertyName = "levelStats", Order = 6)]
+        public BaseStats AdjustedStats { get; set; }
+
+        //[JsonProperty(PropertyName = "moves", Order = 7)]
+        //public List<Moves> Moves { get; set; }
 
         [JsonProperty(PropertyName = "abilities", Order = 8)]
         public List<string> Abilities { get; set; }

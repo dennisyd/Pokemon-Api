@@ -7,7 +7,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves
 {
     public class Interface
     {
-        public const string Schema = "DamageMultipliers";
+        public const string Schema = "Moves";
 
         public Interface() { }
 
@@ -21,7 +21,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves
         public async Task<List<Models.Flags>> GetFlags(int number)
         {
             Queries.Flags query = new Queries.Flags();
-            List<Models.Flags> result = await query.Get(number);
+            List<Models.Flags> result = await query.GetAll(number);
             return result;
         }
 

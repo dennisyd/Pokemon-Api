@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
 
 using Pokemon_API.DataBaseInterface;
 
-namespace Pokemon_API.DatabaseSchemas.Moves.Queries
+namespace Pokemon_API.DatabaseSchemas.Pokemon.Queries
 {
-    public class Flags : ITableQueries<Models.Flags>, ITableQueriesAll<Models.Flags>
+    public class BaseStats : ITableQueries<Models.BaseStats>
     {
-        private string TableName = "Flags";
+        private string TableName = "BaseStats";
 
-        public Flags() { }
+        public BaseStats() { }
 
-        public async Task<List<Models.Flags>> GetAll(int number)
+        public async Task<Models.BaseStats> Get(int number)
         {
             var connection = Interface.GetDatabaseConnector();
             if (await connection.IsConnected())
@@ -24,18 +24,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Queries
             return null;
         }
 
-        public async Task<Models.Flags> Get(int number)
-        {
-            var connection = Interface.GetDatabaseConnector();
-            if (await connection.IsConnected())
-            {
-                string query = $"Select * From {this.TableName} WHERE ...";
-                MySqlCommand command = new MySqlCommand(query);
-            }
-            return null;
-        }
-
-        public async Task<Models.Flags> Insert(Models.Flags obj)
+        public async Task<Models.BaseStats> Insert(Models.BaseStats obj)
         {
             var connection = Interface.GetDatabaseConnector();
             if (await connection.IsConnected())
