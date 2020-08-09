@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace Pokemon_API.DatabaseModels.DamageMultiplier
+namespace Pokemon_API.DatabaseSchemas.DamageMultiplier.Models
 {
     public class DamageMultiplier
     {

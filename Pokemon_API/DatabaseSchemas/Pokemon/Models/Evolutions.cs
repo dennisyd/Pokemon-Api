@@ -2,9 +2,9 @@
 
 using Newtonsoft.Json;
 
-namespace Pokemon_API.DatabaseModels.Pokemon
+namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
-    public class Abilities
+    public class Evolutions
     {
         [JsonProperty(PropertyName="id", Order = 1)]
         public int Id { get; set; }
@@ -12,10 +12,10 @@ namespace Pokemon_API.DatabaseModels.Pokemon
         [JsonProperty(PropertyName="pokemonNumber", Order = 2)]
         public int PokemonNumber { get; set; }
 
-        [JsonProperty(PropertyName="ability", Order = 3)]
-        public string Ability { get; set; }
+        [JsonProperty(PropertyName="evolution", Order = 3)]
+        public string Evolution { get; set; }
 
-        public Abilities()
+        public Evolutions()
         {
         }
     }

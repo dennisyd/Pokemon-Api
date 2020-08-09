@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace Pokemon_API.DatabaseModels.Pokemon
+namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class Moves
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace Pokemon_API.DatabaseModels.Moves
+namespace Pokemon_API.DatabaseSchemas.Moves.Models
 {
     public class Moves
     {

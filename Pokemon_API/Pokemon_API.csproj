@@ -16,20 +16,21 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="DatabaseModels\" />
-    <Folder Include="DatabaseModels\Pokemon\" />
-    <Folder Include="DatabaseModels\Moves\" />
     <Folder Include="Functions\" />
-    <Folder Include="DamageCalculator\" />
-    <Folder Include="DamageCalculator\DamageMultipliers\" />
-    <Folder Include="DatabaseModels\DamageMultiplier\" />
     <Folder Include="ResponseModels\" />
     <Folder Include="RequestModels\" />
     <Folder Include="DataBaseInterface\" />
     <Folder Include="PokemonBuilder\" />
     <Folder Include="PokemonModels\" />
-    <Folder Include="DataBaseInterface\Pokemon\" />
-    <Folder Include="DataBaseInterface\Moves\" />
-    <Folder Include="DataBaseInterface\DamageMultiplier\" />
+    <Folder Include="DatabaseSchemas\" />
+    <Folder Include="DatabaseSchemas\DamageMultiplier\" />
+    <Folder Include="DatabaseSchemas\Moves\" />
+    <Folder Include="DatabaseSchemas\Pokemon\" />
+    <Folder Include="DatabaseSchemas\DamageMultiplier\Models\" />
+    <Folder Include="DatabaseSchemas\Moves\Models\" />
+    <Folder Include="DatabaseSchemas\Pokemon\Models\" />
+    <Folder Include="DatabaseSchemas\DamageMultiplier\Queries\" />
+    <Folder Include="DatabaseSchemas\Moves\Queries\" />
+    <Folder Include="DatabaseSchemas\Pokemon\Queries\" />
   </ItemGroup>
 </Project>
