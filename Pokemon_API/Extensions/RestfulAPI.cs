@@ -38,7 +38,7 @@ namespace DarkSkyMicroservice.Extensions
             }
 
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            IRestResponse restResponse = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            IRestResponse restResponse = await client.ExecuteAsync(request, cancellationTokenSource.Token);
             if (restResponse == null)
             {
                 Logger.WriteLine("null rest response");

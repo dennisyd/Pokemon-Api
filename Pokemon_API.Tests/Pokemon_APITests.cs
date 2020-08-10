@@ -40,6 +40,5 @@ namespace Pokemon_API.Tests
             Assert.True(isConnected);
             await connection.Disconnect();
         }
-
     }
 }
