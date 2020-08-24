@@ -10,7 +10,7 @@ using Amazon.Lambda.APIGatewayEvents;
 
 using Pokemon_API;
 
-using Pokemon_API.DataBaseInterface;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.Tests
 {
@@ -39,6 +39,12 @@ namespace Pokemon_API.Tests
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
             await connection.Disconnect();
+        }
+
+        [Fact]
+        public async void TestQuerys()
+        {
+
         }
     }
 }

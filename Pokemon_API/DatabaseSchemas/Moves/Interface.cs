@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Pokemon_API.DataBaseInterface;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Moves
 {

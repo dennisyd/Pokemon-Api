@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
 
-using Pokemon_API.DataBaseInterface;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.DamageMultiplier.Queries
 {
-    internal class Multiplier : ITableQueries<Models.Multiplier>
+    internal class Multiplier : TableQueries<Models.Multiplier>
     {
-        private string TableName = "Multipliers";
+        private new string Database = "Multipliers";
+        private new string TableName = "Multipliers";
 
         public Multiplier() { }
 
-        public async Task<Models.Multiplier> Get(int number)
+        public override async Task<List<Models.Multiplier>> Get(Dictionary<string, object> values)
         {
             var connection = Interface.GetDatabaseConnector();
             if (await connection.IsConnected())
