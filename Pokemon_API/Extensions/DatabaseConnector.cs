@@ -4,15 +4,17 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace Pokemon_API.DataBaseInterface
+namespace Pokemon_API.Extensions
 {
     public class DatabaseConnector
     {
-        protected string Password = "pE#31$5u1P0425";
-        protected string Username = "admin";
-        protected int Port = 3306;
-        protected string Endpoint = "pokemon-db.c9h4e2habiis.us-east-2.rds.amazonaws.com";
-        protected string Database = "base";
+        protected static string Password = "pE#31$5u1P0425";
+        protected static string Username = "admin";
+        protected static int Port = 3306;
+        protected static string Endpoint = "pokemon-db.c9h4e2habiis.us-east-2.rds.amazonaws.com";
+        protected static string Database = "base";
+
+        protected static string ConnectionString = $"Server={Endpoint}; database={Database}; UID={Username}; password={Password}";
 
         protected MySqlConnection connection;
         public MySqlConnection Connection
@@ -35,9 +37,8 @@ namespace Pokemon_API.DataBaseInterface
         }
 
         public void setDatabase(string database) {
-            this.Database = (!string.IsNullOrEmpty(database)) ? database : this.Database;
+            DatabaseConnector.Database = (!string.IsNullOrEmpty(database)) ? database : DatabaseConnector.Database;
         }
-
 
         public async Task<bool> IsConnected()
         {
