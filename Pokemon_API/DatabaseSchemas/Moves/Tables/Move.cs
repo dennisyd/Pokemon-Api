@@ -10,8 +10,8 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
 {
     public class Move : TableQueries<Models.Moves>
     {
-        private new string Database = "Moves";
-        private new string TableName = "Move";
+        public override string Database => "Moves";
+        public override string TableName => "Move";
 
         public Move() { }
 
