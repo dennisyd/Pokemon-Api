@@ -51,7 +51,7 @@ namespace Pokemon_API.Tests
         }
 
         [Fact]
-        public async void TestDCamageMultiplier()
+        public async void TestDamageMultiplier()
         {
             Console.WriteLine("-- | Damage Multipliers | Multipliers | --");
             Console.WriteLine("-- Testing Connection --");
