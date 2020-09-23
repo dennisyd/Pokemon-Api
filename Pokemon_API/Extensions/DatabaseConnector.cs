@@ -32,12 +32,11 @@ namespace Pokemon_API.Extensions
 
         public DatabaseConnector()
         {
-            string connection_string = $"Server={Endpoint}; database={Database}; UID={Username}; password={Password}";
-            connection = new MySqlConnection(connection_string);
+
         }
 
-        public void setDatabase(string database) {
-            DatabaseConnector.Database = (!string.IsNullOrEmpty(database)) ? database : DatabaseConnector.Database;
+        public void SetDatabase(string database) {
+            Database = (!string.IsNullOrEmpty(database)) ? database : DatabaseConnector.Database;
         }
 
         public async Task<bool> IsConnected()

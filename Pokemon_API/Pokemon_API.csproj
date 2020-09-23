@@ -29,8 +29,6 @@
     <Folder Include="DatabaseSchemas\DamageMultiplier\Models\" />
     <Folder Include="DatabaseSchemas\Moves\Models\" />
     <Folder Include="DatabaseSchemas\Pokemon\Models\" />
-    <Folder Include="DatabaseSchemas\DamageMultiplier\Queries\" />
-    <Folder Include="DatabaseSchemas\Moves\Queries\" />
-    <Folder Include="DatabaseSchemas\Pokemon\Queries\" />
+    <Folder Include="DatabaseSchemas\DamageMultiplier\Tables\" />
   </ItemGroup>
 </Project>

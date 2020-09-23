@@ -8,27 +8,39 @@ namespace Pokemon_API.Extensions
 {
     public abstract class TableQueries<T>
     {
-        public string Database = "";
-        public string TableName = "";
-        //connector.setDatabase(Schema);
+        public abstract string Database { get; }
+        public abstract string TableName { get; }
+        public DatabaseConnector connection = DatabaseConnector.Instance();
 
-        public virtual async Task<List<T>> Get(Dictionary<string, object> values)
+
+        public virtual DatabaseConnector GetDatabaseConnector()
         {
-            DatabaseConnector connection = DatabaseConnector.Instance();
-            connection.setDatabase(Database);
+            return connection;
+        }
+
+        internal async Task<List<T>> Get(Dictionary<string, object> values)
+        {
+            DatabaseConnector connection = GetDatabaseConnector();
             if(!await connection.IsConnected())
             {
                 Console.WriteLine($"Failed to connect to {Database} | {TableName}");
                 return null;
             }
+
+            if(values.Count == 0)
+            {
+                return null;
+            }
+
+            string query = $"Select * From {TableName} WHERE ";
             try
             {
-                string query = $"Select * From {this.TableName} WHERE ";
                 foreach (KeyValuePair<string, object> pair in values)
                 {
-                    query += $"{pair.Key}=@{pair.Key} AND";
+                    query += $"{pair.Key}=@{pair.Value} AND";
                 }
                 query = query.Substring(0, query.Length - 3);
+                query += ";";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection.Connection);
                 foreach (KeyValuePair<string, object> pair in values)
@@ -50,36 +62,42 @@ namespace Pokemon_API.Extensions
             }
             catch(Exception ex)
             {
-                Console.WriteLine($":: {Database} | {TableName} | GET | {ex.Message} ::");
-                return null;
+                Exception e = new Exception($":: {Database} | {TableName} | GET | {ex.Message} | QUERY | {query} ::");
+                throw e;
             }
         }
 
-        public async Task<int?> Insert(Dictionary<string, object> values)
+        internal async Task<int?> Insert(Dictionary<string, object> values)
         {
-            DatabaseConnector connection = DatabaseConnector.Instance();
-            connection.setDatabase(Database);
+            DatabaseConnector connection = GetDatabaseConnector();
 
             if (!await connection.IsConnected())
             {
                 Console.WriteLine($"Failed to connect to {Database} | {TableName}");
                 return null;
             }
+
+            if(values.Count == 0)
+            {
+                return null;
+            }
+
+            string query = $"INSERT INTO {TableName} (";
             try
             {
-                string query = $"INSERT INTO {TableName} (";
+                
                 foreach(KeyValuePair<string, object> pair in values)
                 {
                     query += $"{pair.Key}, ";
                 }
-                query.Remove(query.LastIndexOf(','), 1);
+                query = query.Remove(query.LastIndexOf(','), 1);
                 query += ") VALUES (";
 
                 foreach (KeyValuePair<string, object> pair in values)
                 {
                     query += $"@{pair.Key}, ";
                 }
-                query.Remove(query.LastIndexOf(','), 1);
+                query = query.Remove(query.LastIndexOf(','), 1);
                 query += "); SELECT LAST_INSERT_ID();";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection.Connection);
@@ -95,27 +113,33 @@ namespace Pokemon_API.Extensions
             }
             catch(Exception ex)
             {
-                Console.WriteLine($":: {Database} | {TableName} | INSERT | {ex.Message} ::");
-                return null;
+                Exception e = new Exception($":: {Database} | {TableName} | INSERT | {ex.Message} | QUERY | {query} ::");
+                throw e;
             }
         }
 
-        public async Task<int?> Delete(Dictionary<string, object> values)
+        internal async Task<int?> Delete(Dictionary<string, object> values)
         {
-            DatabaseConnector connection = DatabaseConnector.Instance();
-            connection.setDatabase(Database);
+            DatabaseConnector connection = GetDatabaseConnector();
 
             if (!await connection.IsConnected())
             {
                 Console.WriteLine($"Failed to connect to {Database} | {TableName}");
                 return null;
             }
+
+            if(values.Count == 0)
+            {
+                return null;
+            }
+
+            string query = $"DELETE FROM {TableName} WHERE ";
             try
             {
-                string query = $"DELETE FROM {TableName} WHERE ";
+                
                 foreach (KeyValuePair<string, object> pair in values)
                 {
-                    query += $"{pair.Key}=@{pair.Key} AND";
+                    query += $"{pair.Key}=@{pair.Value} AND";
                 }
                 query = query.Remove(query.LastIndexOf("AND"), 3);
 
@@ -132,12 +156,12 @@ namespace Pokemon_API.Extensions
             }
             catch (Exception ex)
             {
-                Console.WriteLine($":: {Database} | {TableName} | DELETE | {ex.Message} ::");
-                return null;
+                Exception e = new Exception($":: {Database} | {TableName} | DELETE | {ex.Message} | QUERY | {query} ::");
+                throw e;
             }
         }
 
-        public T DataReaderConverter(MySqlDataReader reader)
+        public virtual T DataReaderConverter(MySqlDataReader reader)
         {
             return default(T);
         }
