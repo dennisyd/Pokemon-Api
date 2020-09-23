@@ -11,6 +11,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves
 
         public Interface() { }
 
+        /*
         public static DatabaseConnector GetDatabaseConnector()
         {
             DatabaseConnector connector = DatabaseConnector.Instance();
@@ -35,7 +36,6 @@ namespace Pokemon_API.DatabaseSchemas.Moves
 
         public async Task<Models.Moves> GetMove(int number = default(int), string name = default(string))
         {
-            Queries.Move query = new Queries.Move();
             Models.Moves result = null;
 
             if(number == default(int) && string.IsNullOrEmpty(name))
@@ -61,5 +61,6 @@ namespace Pokemon_API.DatabaseSchemas.Moves
             Models.Moves result = await query.Insert(obj);
             return result;
         }
+        */
     }
 }
