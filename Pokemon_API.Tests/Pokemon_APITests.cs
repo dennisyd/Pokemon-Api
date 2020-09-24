@@ -30,7 +30,7 @@ namespace Pokemon_API.Tests
             DatabaseConnector connection;
             bool isConnected;
 
-            DatabaseSchemas.DamageMultiplier.Tables.Multiplier multiplier = new DatabaseSchemas.DamageMultiplier.Tables.Multiplier();
+            var multiplier = new DatabaseSchemas.DamageMultiplier.Tables.Multiplier();
 
             Console.WriteLine(multiplier.Database);
             Console.WriteLine(multiplier.TableName);
@@ -45,31 +45,35 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- | Moves | Flags | --");
             Console.WriteLine("-- Testing Connection --");
 
-            DatabaseSchemas.Moves.Tables.Flags table = new DatabaseSchemas.Moves.Tables.Flags();
-            connection = table.GetDatabaseConnector();
+            var moves = new DatabaseSchemas.Moves.Tables.Flags();
+            connection = moves.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
             await connection.Disconnect();
 
             Console.WriteLine(SUCCESS);
 
-            /*
-            connection = DatabaseSchemas.Moves.Interface.GetDatabaseConnector();
+            Console.WriteLine("-- | Pokemon | BaseStats | --");
+            Console.WriteLine("-- Testing Connection --");
+
+            var pokemon = new DatabaseSchemas.Pokemon.Tables.BaseStats();
+            connection = pokemon.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
             await connection.Disconnect();
-            */
+
+            Console.WriteLine(SUCCESS);
         }
 
         [Fact]
-        public async void TestDamageMultiplier_Multiplier()
+        public async void Test_DamageMultiplier_Multiplier()
         {
             Console.WriteLine("-- | Damage Multipliers | Multipliers | --");
             Console.WriteLine("-- Testing Connection --");
             DatabaseConnector connection;
             bool isConnected;
 
-            DatabaseSchemas.DamageMultiplier.Tables.Multiplier table = new DatabaseSchemas.DamageMultiplier.Tables.Multiplier();
+            var table = new DatabaseSchemas.DamageMultiplier.Tables.Multiplier();
             connection = table.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
@@ -78,7 +82,7 @@ namespace Pokemon_API.Tests
             Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
-            DatabaseSchemas.DamageMultiplier.Models.Multiplier data = new DatabaseSchemas.DamageMultiplier.Models.Multiplier(
+            var data = new DatabaseSchemas.DamageMultiplier.Models.Multiplier(
                 Id: null,
                 Name: "test",
                 Normal: 10,
@@ -128,14 +132,14 @@ namespace Pokemon_API.Tests
         }
 
         [Fact]
-        public async void TestMoves_Flags()
+        public async void Test_Moves_Flags()
         {
             Console.WriteLine("-- | Moves | Flags | --");
             Console.WriteLine("-- Testing Connection --");
             DatabaseConnector connection;
             bool isConnected;
 
-            DatabaseSchemas.Moves.Tables.Flags table = new DatabaseSchemas.Moves.Tables.Flags();
+            var table = new DatabaseSchemas.Moves.Tables.Flags();
             connection = table.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
@@ -144,7 +148,7 @@ namespace Pokemon_API.Tests
             Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
-            DatabaseSchemas.Moves.Models.Flags data = new DatabaseSchemas.Moves.Models.Flags(
+            var data = new DatabaseSchemas.Moves.Models.Flags(
                 Id: null,
                 MoveNumber: -1,
                 Flag: "test"
@@ -180,14 +184,14 @@ namespace Pokemon_API.Tests
         }
 
         [Fact]
-        public async void TestMoves_Moves()
+        public async void Test_Moves_Moves()
         {
             Console.WriteLine("-- | Moves | Move | --");
             Console.WriteLine("-- Testing Connection --");
             DatabaseConnector connection;
             bool isConnected;
 
-            DatabaseSchemas.Moves.Tables.Move table = new DatabaseSchemas.Moves.Tables.Move();
+            var table = new DatabaseSchemas.Moves.Tables.Move();
             connection = table.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
@@ -196,19 +200,20 @@ namespace Pokemon_API.Tests
             Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
-            DatabaseSchemas.Moves.Models.Moves data = new DatabaseSchemas.Moves.Models.Moves(
+            var data = new DatabaseSchemas.Moves.Models.Moves(
                 Id: null,
                 Name: "test",
                 Number: -1,
-                Accuracy: -1,
-                BasePower: -1,
+                Accuracy: -2,
+                BasePower: -3,
                 Category: "category",
                 Description: "description",
                 ShortDescription: "shortDescription",
-                PP: -1,
-                Priority: -1,
-                CritRatio: -1,
+                PP: -4,
+                Priority: -5,
+                CritRatio: -6,
                 Target: "target",
+                Type: "type",
                 ContestType: "contestType"
             ); 
 
@@ -236,6 +241,166 @@ namespace Pokemon_API.Tests
 
             get = await table.Get(data.Name);
             Assert.Null(get);
+
+            Console.WriteLine(SUCCESS);
+        }
+
+        [Fact]
+        public async void Test_Pokemon_Abilities()
+        {
+            Console.WriteLine("-- | Pokemon | Abilities | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
+
+            var table = new DatabaseSchemas.Pokemon.Tables.Abilities();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Insert --");
+
+            var data = new DatabaseSchemas.Pokemon.Models.Abilities(
+                Id: null,
+                PokemonNumber: -1,
+                Ability: "ability"
+            );
+
+            await table.Delete(data.PokemonNumber);
+
+            int? result = await table.Insert(data);
+            Assert.NotNull(result);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Get --");
+
+            List<DatabaseSchemas.Pokemon.Models.Abilities> list = await table.Get(data.PokemonNumber);
+            var get = list.FirstOrDefault();
+
+            Assert.NotNull(get);
+            Assert.NotNull(get.Id);
+
+            data.Id = get.Id;
+            Assert.Equal(data, get);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Delete --");
+
+            result = await table.Delete(data.PokemonNumber);
+            Assert.NotNull(result);
+
+            list = await table.Get(data.PokemonNumber);
+            Assert.Empty(list);
+
+            Console.WriteLine(SUCCESS);
+        }
+
+        [Fact]
+        public async void Test_Pokemon_BaseStats()
+        {
+            Console.WriteLine("-- | Pokemon | BaseStats | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
+
+            var table = new DatabaseSchemas.Pokemon.Tables.BaseStats();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Insert --");
+
+            var data = new DatabaseSchemas.Pokemon.Models.BaseStats(
+                Id: null,
+                PokemonNumber: -1,
+                Hp: -2,
+                Attack: -3,
+                Defense: -4,
+                SpecialAttack: -5,
+                SpecialDefense: -6,
+                Speed: -7
+            );
+
+            await table.Delete(data.PokemonNumber);
+
+            int? result = await table.Insert(data);
+            Assert.NotNull(result);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Get --");
+
+            DatabaseSchemas.Pokemon.Models.BaseStats get = await table.Get(data.PokemonNumber);
+
+            Assert.NotNull(get);
+            Assert.NotNull(get.Id);
+
+            data.Id = get.Id;
+            Assert.Equal(data, get);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Delete --");
+
+            result = await table.Delete(data.PokemonNumber);
+            Assert.NotNull(result);
+
+            get = await table.Get(data.PokemonNumber);
+            Assert.Null(get);
+
+            Console.WriteLine(SUCCESS);
+        }
+
+        [Fact]
+        public async void Test_Pokemon_EggGroups()
+        {
+            Console.WriteLine("-- | Pokemon | EggGroups | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
+
+            var table = new DatabaseSchemas.Pokemon.Tables.EggGroups();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Insert --");
+
+            var data = new DatabaseSchemas.Pokemon.Models.EggGroups(
+                Id: null,
+                PokemonNumber: -1,
+                EggGroup: "eggGroup"
+            );
+
+            await table.Delete(data.PokemonNumber);
+
+            int? result = await table.Insert(data);
+            Assert.NotNull(result);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Get --");
+
+            List<DatabaseSchemas.Pokemon.Models.EggGroups> list = await table.Get(data.PokemonNumber);
+            var get = list.FirstOrDefault();
+
+            Assert.NotNull(get);
+            Assert.NotNull(get.Id);
+
+            data.Id = get.Id;
+            Assert.Equal(data, get);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Delete --");
+
+            result = await table.Delete(data.PokemonNumber);
+            Assert.NotNull(result);
+
+            list = await table.Get(data.PokemonNumber);
+            Assert.Empty(list);
 
             Console.WriteLine(SUCCESS);
         }
