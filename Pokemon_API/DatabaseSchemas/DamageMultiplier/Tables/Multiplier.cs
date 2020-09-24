@@ -92,7 +92,8 @@ namespace Pokemon_API.DatabaseSchemas.DamageMultiplier.Tables
                 Ice: ice,
                 Dragon: dragon,
                 Dark: dark,
-                Fairy: fairy);
+                Fairy: fairy
+            );
         }
     }
 }
