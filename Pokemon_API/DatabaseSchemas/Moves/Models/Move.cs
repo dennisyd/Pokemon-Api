@@ -41,7 +41,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
         public List<string> Flags { get; set; }
 
         [JsonProperty(PropertyName = "critRatio", Order = 12)]
-        public int CriticalRatio { get; set; }
+        public int CritRatio { get; set; }
 
         [JsonProperty(PropertyName = "target", Order = 13)]
         public string Target { get; set; }
@@ -58,7 +58,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
 
         public Moves(int? Id, string Name, int Number, int Accuracy, int BasePower,
             string Category, string Description, string ShortDescription, int PP,
-            int Priority, int CriticalRatio, string Target, string ContestType)
+            int Priority, int CritRatio, string Target, string ContestType)
         {
             this.Id = Id;
             this.Name = Name;
@@ -70,7 +70,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
             this.ShortDescription = ShortDescription;
             this.PP = PP;
             this.Priority = Priority;
-            this.CriticalRatio = CriticalRatio;
+            this.CritRatio = CritRatio;
             this.Target = Target;
             this.ContestType = ContestType;
         }
@@ -89,7 +89,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
                 {nameof(this.ShortDescription).ToLower(), this.ShortDescription },
                 {nameof(this.PP).ToLower(), this.PP },
                 {nameof(this.Priority).ToLower(), this.Priority },
-                {nameof(this.CriticalRatio).ToLower(), this.CriticalRatio },
+                {nameof(this.CritRatio).ToLower(), this.CritRatio },
                 {nameof(this.Target).ToLower(), this.Target },
                 {nameof(this.ContestType).ToLower(), this.ContestType },
             };
@@ -114,7 +114,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
                 item.ShortDescription.Equals(this.ShortDescription) &&
                 item.PP.Equals(this.PP) &&
                 item.Priority.Equals(this.Priority) &&
-                item.CriticalRatio.Equals(this.CriticalRatio) &&
+                item.CritRatio.Equals(this.CritRatio) &&
                 item.Target.Equals(this.Target) &&
                 item.ContestType.Equals(this.ContestType);
         }

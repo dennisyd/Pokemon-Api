@@ -24,6 +24,9 @@ namespace Pokemon_API.Tests
 
         [Fact]
         public async void TestDBSchemaConnections() {
+
+            Console.WriteLine("-- | Damage Multipliers | Multipliers | --");
+            Console.WriteLine("-- Testing Connection --");
             DatabaseConnector connection;
             bool isConnected;
 
@@ -37,12 +40,20 @@ namespace Pokemon_API.Tests
             Assert.True(isConnected);
             await connection.Disconnect();
 
-            /*
-            connection = DatabaseSchemas.Moves.Interface.GetDatabaseConnector();
+            Console.WriteLine(SUCCESS);
+
+            Console.WriteLine("-- | Moves | Flags | --");
+            Console.WriteLine("-- Testing Connection --");
+
+            DatabaseSchemas.Moves.Tables.Flags table = new DatabaseSchemas.Moves.Tables.Flags();
+            connection = table.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
             await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
+
+            /*
             connection = DatabaseSchemas.Moves.Interface.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
@@ -137,7 +148,7 @@ namespace Pokemon_API.Tests
                 Id: null,
                 MoveNumber: -1,
                 Flag: "test"
-                );
+            );
 
             await table.Delete(data.MoveNumber);
 
@@ -176,14 +187,57 @@ namespace Pokemon_API.Tests
             DatabaseConnector connection;
             bool isConnected;
 
-            DatabaseSchemas.Moves.Tables.Move multiplier = new DatabaseSchemas.Moves.Tables.Move();
-            connection = multiplier.GetDatabaseConnector();
+            DatabaseSchemas.Moves.Tables.Move table = new DatabaseSchemas.Moves.Tables.Move();
+            connection = table.GetDatabaseConnector();
             isConnected = await connection.IsConnected();
             Assert.True(isConnected);
             await connection.Disconnect();
 
             Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
+
+            DatabaseSchemas.Moves.Models.Moves data = new DatabaseSchemas.Moves.Models.Moves(
+                Id: null,
+                Name: "test",
+                Number: -1,
+                Accuracy: -1,
+                BasePower: -1,
+                Category: "category",
+                Description: "description",
+                ShortDescription: "shortDescription",
+                PP: -1,
+                Priority: -1,
+                CritRatio: -1,
+                Target: "target",
+                ContestType: "contestType"
+            ); 
+
+            await table.Delete(data.Name);
+
+            int? result = await table.Insert(data);
+            Assert.NotNull(result);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Get --");
+
+            DatabaseSchemas.Moves.Models.Moves get = await table.Get(data.Name);
+
+            Assert.NotNull(get);
+            Assert.NotNull(get.Id);
+
+            data.Id = get.Id;
+            Assert.Equal(data, get);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Delete --");
+
+            result = await table.Delete(data.Name);
+            Assert.NotNull(result);
+
+            get = await table.Get(data.Name);
+            Assert.Null(get);
+
+            Console.WriteLine(SUCCESS);
         }
     }
 }
