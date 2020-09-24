@@ -15,27 +15,51 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
 
         public Flags() { }
 
-        public async Task<List<Models.Flags>> GetAll(int number)
+        public override DatabaseConnector GetDatabaseConnector()
         {
-            
-            return null;
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
         }
 
-        public async Task<Models.Flags> Get(int number)
+        public async Task<List<Models.Flags>> Get(int number)
         {
-            
-            return null;
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"moveNumber", number }
+            };
+
+            List<Models.Flags> result = await Get(dict);
+            return result;
         }
 
-        public async Task<Models.Flags> Insert(Models.Flags obj)
+        public async Task<int?> Insert(Models.Flags obj)
         {
-            
-            return null;
+            int? result = await Insert(obj.ToDict());
+            return result;
         }
 
-        public async Task Delete(int number)
+        public async Task<int?> Delete(int number)
         {
-            
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"moveNumber", number }
+            };
+
+            int? result = await Delete(dict);
+            return result;
+        }
+
+        public override Models.Flags DataReaderConverter(MySqlDataReader reader)
+        {
+            int id = int.Parse(reader["id"].ToString());
+            int moveNumber = int.Parse(reader["moveNumber"].ToString());
+            string flag = reader["flag"].ToString();
+
+            return new Models.Flags(
+                Id: id,
+                MoveNumber: moveNumber,
+                Flag: flag
+            );
         }
     }
 }
