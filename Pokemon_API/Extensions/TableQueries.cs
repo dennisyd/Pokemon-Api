@@ -37,7 +37,7 @@ namespace Pokemon_API.Extensions
             {
                 foreach (KeyValuePair<string, object> pair in values)
                 {
-                    query += $"{pair.Key}=@{pair.Value} AND";
+                    query += $"{pair.Key}=@{pair.Key} AND";
                 }
                 query = query.Substring(0, query.Length - 3);
                 query += ";";
@@ -46,7 +46,7 @@ namespace Pokemon_API.Extensions
                 foreach (KeyValuePair<string, object> pair in values)
                 {
                     if(pair.Value == null) { continue; }
-                    cmd.Parameters.AddWithValue($"@{pair.Value}", pair.Value);
+                    cmd.Parameters.AddWithValue($"@{pair.Key}", pair.Value);
                 }
 
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -139,15 +139,16 @@ namespace Pokemon_API.Extensions
                 
                 foreach (KeyValuePair<string, object> pair in values)
                 {
-                    query += $"{pair.Key}=@{pair.Value} AND";
+                    query += $"{pair.Key}=@{pair.Key} AND";
                 }
                 query = query.Remove(query.LastIndexOf("AND"), 3);
+                query += ";";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection.Connection);
                 foreach (KeyValuePair<string, object> pair in values)
                 {
                     if (pair.Value == null) { continue; }
-                    cmd.Parameters.AddWithValue($"@{pair.Value}", pair.Value);
+                    cmd.Parameters.AddWithValue($"@{pair.Key}", pair.Value);
                 }
 
                 int id = await cmd.ExecuteNonQueryAsync();
