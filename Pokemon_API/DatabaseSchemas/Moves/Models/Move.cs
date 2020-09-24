@@ -58,7 +58,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
 
         public Moves(int? Id, string Name, int Number, int Accuracy, int BasePower,
             string Category, string Description, string ShortDescription, int PP,
-            int Priority, int CritRatio, string Target, string ContestType)
+            int Priority, int CritRatio, string Target, string Type, string ContestType)
         {
             this.Id = Id;
             this.Name = Name;
@@ -72,6 +72,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
             this.Priority = Priority;
             this.CritRatio = CritRatio;
             this.Target = Target;
+            this.Type = Type;
             this.ContestType = ContestType;
         }
 
@@ -91,6 +92,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
                 {nameof(this.Priority).ToLower(), this.Priority },
                 {nameof(this.CritRatio).ToLower(), this.CritRatio },
                 {nameof(this.Target).ToLower(), this.Target },
+                {nameof(this.Type).ToLower(), this.Type },
                 {nameof(this.ContestType).ToLower(), this.ContestType },
             };
         }
@@ -116,6 +118,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
                 item.Priority.Equals(this.Priority) &&
                 item.CritRatio.Equals(this.CritRatio) &&
                 item.Target.Equals(this.Target) &&
+                item.Type.Equals(this.Type) &&
                 item.ContestType.Equals(this.ContestType);
         }
 

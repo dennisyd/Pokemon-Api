@@ -75,9 +75,9 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
         {
             int id = int.Parse(reader["id"].ToString());
             string name = reader["name"].ToString();
-            int number = int.Parse(reader["id"].ToString());
-            int accuracy = int.Parse(reader["id"].ToString());
-            int basePower = int.Parse(reader["id"].ToString());
+            int number = int.Parse(reader["number"].ToString());
+            int accuracy = int.Parse(reader["accuracy"].ToString());
+            int basePower = int.Parse(reader["basePower"].ToString());
             string category = reader["category"].ToString();
             string description = reader["description"].ToString();
             string shortDescription = reader["shortDescription"].ToString();
@@ -99,8 +99,9 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
                 ShortDescription: shortDescription,
                 PP: pp,
                 Priority: priority,
-                CriticalRatio: criticalRatio,
+                CritRatio: criticalRatio,
                 Target: target,
+                Type: type,
                 ContestType: contestType
             );
         }
