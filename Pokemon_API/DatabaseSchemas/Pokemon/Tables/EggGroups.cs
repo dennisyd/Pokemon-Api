@@ -6,36 +6,61 @@ using MySql.Data.MySqlClient;
 
 using Pokemon_API.Extensions;
 
-namespace Pokemon_API.DatabaseSchemas.Pokemon.Queries
+namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
 {
     public class EggGroups : TableQueries<Models.EggGroups>
     {
         public override string Database => "Pokemon";
-        public override string TableName => "EggGroups";
+        public override string TableName => "EggGroup";
 
         public EggGroups() { }
 
-        public async Task<List<Models.EggGroups>> GetAll(int number)
+        public override DatabaseConnector GetDatabaseConnector()
         {
-
-            return null;
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
         }
 
-        public async Task<Models.EggGroups> Get(int number)
+        public async Task<List<Models.EggGroups>> Get(int number)
         {
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"pokemonNumber", number }
+            };
 
-            return null;
+            List<Models.EggGroups> result = await Get(dict);
+            return result;
         }
 
-        public async Task<Models.EggGroups> Insert(Models.EggGroups obj)
+        public async Task<int?> Insert(Models.EggGroups obj)
         {
-
-            return null;
+            int? result = await Insert(obj.ToDict());
+            return result;
         }
 
-        public async Task Delete(int number)
+        public async Task<int?> Delete(int number)
         {
-            
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"pokemonNumber", number }
+            };
+
+            int? result = await Delete(dict);
+            return result;
         }
+
+        public override Models.EggGroups DataReaderConverter(MySqlDataReader reader)
+        {
+            int id = int.Parse(reader["id"].ToString());
+            int pokemonNumber = int.Parse(reader["pokemonNumber"].ToString());
+            string eggGroup = reader["eggGroup"].ToString();
+
+            return new Models.EggGroups(
+                Id: id,
+                PokemonNumber: pokemonNumber,
+                EggGroup: eggGroup
+            );
+        }
+
     }
 }
