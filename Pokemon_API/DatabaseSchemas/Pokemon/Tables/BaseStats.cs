@@ -15,21 +15,62 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
 
         public BaseStats() { }
 
+        public override DatabaseConnector GetDatabaseConnector()
+        {
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
+        }
+
         public async Task<Models.BaseStats> Get(int number)
         {
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"pokemonNumber", number }
+            };
 
-            return null;
+            List<Models.BaseStats> result = await Get(dict);
+            return result.FirstOrDefault();
         }
 
-        public async Task<Models.BaseStats> Insert(Models.BaseStats obj)
+        public async Task<int?> Insert(Models.BaseStats obj)
         {
 
-            return null;
+            int? result = await Insert(obj.ToDict());
+            return result;
         }
 
-        public async Task Delete(int number)
+        public async Task<int?> Delete(int number)
         {
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"pokemonNumber", number }
+            };
 
+            int? result = await Delete(dict);
+            return result;
+        }
+
+        public override Models.BaseStats DataReaderConverter(MySqlDataReader reader)
+        {
+            int id = int.Parse(reader["id"].ToString());
+            int pokemonNumber = int.Parse(reader["pokemonNumber"].ToString());
+            int hp = int.Parse(reader["hp"].ToString());
+            int attack = int.Parse(reader["attack"].ToString());
+            int defense = int.Parse(reader["defense"].ToString());
+            int specialAttack = int.Parse(reader["specialAttack"].ToString());
+            int specialDefense = int.Parse(reader["specialDefense"].ToString());
+            int speed = int.Parse(reader["speed"].ToString());
+
+            return new Models.BaseStats(
+                Id: id,
+                PokemonNumber: pokemonNumber,
+                Hp: hp,
+                Attack: attack,
+                Defense: defense,
+                SpecialAttack: specialAttack,
+                SpecialDefense: specialDefense,
+                Speed: speed
+            );
         }
     }
 }
