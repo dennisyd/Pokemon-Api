@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
@@ -7,53 +6,83 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class Pokemon
     {
-        [JsonProperty(PropertyName="id", Order = 1)]
-        public int Id { get; set; }
+        [JsonIgnore]
+        public int? Id { get; set; }
 
-        [JsonProperty(PropertyName="name", Order = 2)]
+        [JsonProperty(PropertyName="name", Order = 1)]
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "number", Order = 3)]
-        public string Number { get; set; }
+        [JsonProperty(PropertyName = "number", Order = 2)]
+        public int Number { get; set; }
 
-        [JsonProperty(PropertyName = "species", Order = 4)]
+        [JsonProperty(PropertyName = "species", Order = 3)]
         public string Species { get; set; }
 
-        [JsonProperty(PropertyName = "genderRatio", Order = 5)]
-        public GenderRatio GenderRatio { get; set; }
-
-        [JsonProperty(PropertyName = "baseStats", Order = 6)]
-        public BaseStats BaseStats { get; set; }
-
-        [JsonProperty(PropertyName = "moves", Order = 7)]
-        public List<Moves> Moves { get; set; }
-
-        [JsonProperty(PropertyName = "abilities", Order = 8)]
-        public List<string> Abilities { get; set; }
-
-        [JsonProperty(PropertyName = "height", Order = 9)]
+        [JsonProperty(PropertyName = "height", Order = 4)]
         public float Height { get; set; }
 
-        [JsonProperty(PropertyName = "weight", Order = 10)]
+        [JsonProperty(PropertyName = "weight", Order = 5)]
         public float Weight { get; set; }
 
-        [JsonProperty(PropertyName = "color", Order = 11)]
+        [JsonProperty(PropertyName = "color", Order = 6)]
         public string Color { get; set; }
 
-        [JsonProperty(PropertyName = "previousEvolution", Order = 12)]
-        public string PreviousEvolution { get; set; }
-
-        [JsonProperty(PropertyName = "evolutions", Order = 13)]
-        public List<string> Evolutions { get; set; }
-
-        [JsonProperty(PropertyName = "evolutionLevel", Order = 14)]
-        public int EvolutionLevel { get; set; }
-
-        [JsonProperty(PropertyName = "eggGroups", Order = 15)]
-        public List<string> EggGroups { get; set; }
+        [JsonProperty(PropertyName = "evolutionLevel", Order = 7)]
+        public int? EvolutionLevel { get; set; }
 
         public Pokemon()
         {
+        }
+
+        public Pokemon(int? Id, string Name, int Number, string Species, float Height, float Weight, string Color, int? EvolutionLevel)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Number = Number;
+            this.Species = Species;
+            this.Height = Height;
+            this.Weight = Weight;
+            this.Color = Color;
+            this.EvolutionLevel = EvolutionLevel;
+        }
+
+        public Dictionary<string, object> ToDict()
+        {
+            return new Dictionary<string, object>()
+            {
+                {nameof(this.Id).ToLower(), this.Id },
+                {nameof(this.Name).ToLower(), this.Name },
+                {nameof(this.Number).ToLower(), this.Number },
+                {nameof(this.Species).ToLower(), this.Species },
+                {nameof(this.Height).ToLower(), this.Height },
+                {nameof(this.Weight).ToLower(), this.Weight },
+                {nameof(this.Color).ToLower(), this.Color },
+                {nameof(this.EvolutionLevel).ToLower(), this.EvolutionLevel },
+            };
+        }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Pokemon;
+            if (item == null)
+            {
+                return false;
+            }
+
+            return
+                item.Id.Equals(this.Id) &&
+                item.Name.Equals(this.Name) &&
+                item.Number.Equals(this.Number) &&
+                item.Species.Equals(this.Species) &&
+                item.Height.Equals(this.Height) &&
+                item.Weight.Equals(this.Weight) &&
+                item.Color.Equals(this.Color) &&
+                item.EvolutionLevel.Equals(this.EvolutionLevel);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.GetHashCode();
         }
     }
 }
