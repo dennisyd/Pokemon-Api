@@ -6,13 +6,13 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class EggGroups
     {
-        [JsonProperty(PropertyName="id", Order = 1)]
+        [JsonIgnore]
         public int? Id { get; set; }
 
-        [JsonProperty(PropertyName="pokemonNumber", Order = 2)]
+        [JsonIgnore]
         public int PokemonNumber { get; set; }
 
-        [JsonProperty(PropertyName="eggGroup", Order = 3)]
+        [JsonProperty(PropertyName="eggGroup", Order = 1)]
         public string EggGroup { get; set; }
 
         public EggGroups()

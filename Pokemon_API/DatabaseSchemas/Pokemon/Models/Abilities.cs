@@ -6,13 +6,13 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class Abilities
     {
-        [JsonProperty(PropertyName="id", Order = 1)]
+        [JsonIgnore]
         public int? Id { get; set; }
 
-        [JsonProperty(PropertyName="pokemonNumber", Order = 2)]
+        [JsonProperty(PropertyName="pokemonNumber", Order = 1)]
         public int PokemonNumber { get; set; }
 
-        [JsonProperty(PropertyName="ability", Order = 3)]
+        [JsonProperty(PropertyName="ability", Order = 2)]
         public string Ability { get; set; }
 
         public Abilities()

@@ -6,28 +6,28 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class BaseStats
     {
-        [JsonProperty(PropertyName="id", Order = 1)]
+        [JsonIgnore]
         public int? Id { get; set; }
 
-        [JsonProperty(PropertyName = "pokemonNumber", Order = 2)]
+        [JsonIgnore]
         public int PokemonNumber { get; set; }
 
-        [JsonProperty(PropertyName="hp", Order = 3)]
+        [JsonProperty(PropertyName="hp", Order = 1)]
         public int Hp { get; set; }
 
-        [JsonProperty(PropertyName="attack", Order = 4)]
+        [JsonProperty(PropertyName="attack", Order = 2)]
         public int Attack { get; set; }
 
-        [JsonProperty(PropertyName="defense", Order = 5)]
+        [JsonProperty(PropertyName="defense", Order = 3)]
         public int Defense { get; set; }
 
-        [JsonProperty(PropertyName="specialAttack", Order = 6)]
+        [JsonProperty(PropertyName="specialAttack", Order = 4)]
         public int SpecialAttack { get; set; }
 
-        [JsonProperty(PropertyName="specialDefense", Order = 7)]
+        [JsonProperty(PropertyName="specialDefense", Order = 5)]
         public int SpecialDefense { get; set; }
 
-        [JsonProperty(PropertyName="speed", Order = 8)]
+        [JsonProperty(PropertyName="speed", Order = 6)]
         public int Speed { get; set; }
 
 
