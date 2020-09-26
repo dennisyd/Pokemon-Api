@@ -8,12 +8,12 @@ using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
 {
-    public class Evolution : TableQueries<Models.Evolutions>
+    public class Evolutions : TableQueries<Models.Evolutions>
     {
         public override string Database => "Pokemon";
-        public override string TableName => "EggGroup";
+        public override string TableName => "Evolutions";
 
-        public Evolution() { }
+        public Evolutions() { }
 
         public override DatabaseConnector GetDatabaseConnector()
         {
@@ -32,7 +32,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             return result;
         }
 
-        public async Task<int?> Insert(Models.EggGroups obj)
+        public async Task<int?> Insert(Models.Evolutions obj)
         {
             int? result = await Insert(obj.ToDict());
             return result;
