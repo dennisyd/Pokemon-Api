@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
-using Newtonsoft.Json;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
-    public class Pokemon
+    public class Pokemon : DatabaseTable<Pokemon>
     {
         [JsonIgnore]
         public int? Id { get; set; }
@@ -44,45 +44,6 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
             this.Weight = Weight;
             this.Color = Color;
             this.EvolutionLevel = EvolutionLevel;
-        }
-
-        public Dictionary<string, object> ToDict()
-        {
-            return new Dictionary<string, object>()
-            {
-                {nameof(this.Id).ToLower(), this.Id },
-                {nameof(this.Name).ToLower(), this.Name },
-                {nameof(this.Number).ToLower(), this.Number },
-                {nameof(this.Species).ToLower(), this.Species },
-                {nameof(this.Height).ToLower(), this.Height },
-                {nameof(this.Weight).ToLower(), this.Weight },
-                {nameof(this.Color).ToLower(), this.Color },
-                {nameof(this.EvolutionLevel).ToLower(), this.EvolutionLevel },
-            };
-        }
-
-        public override bool Equals(object obj)
-        {
-            var item = obj as Pokemon;
-            if (item == null)
-            {
-                return false;
-            }
-
-            return
-                item.Id.Equals(this.Id) &&
-                item.Name.Equals(this.Name) &&
-                item.Number.Equals(this.Number) &&
-                item.Species.Equals(this.Species) &&
-                item.Height.Equals(this.Height) &&
-                item.Weight.Equals(this.Weight) &&
-                item.Color.Equals(this.Color) &&
-                item.EvolutionLevel.Equals(this.EvolutionLevel);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.GetHashCode();
         }
     }
 }

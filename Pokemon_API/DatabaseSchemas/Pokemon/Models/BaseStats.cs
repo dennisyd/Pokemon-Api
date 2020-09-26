@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
-using Newtonsoft.Json;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
-    public class BaseStats
+    public class BaseStats : DatabaseTable<BaseStats>
     {
         [JsonIgnore]
         public int? Id { get; set; }
@@ -46,46 +46,6 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
             this.SpecialAttack = SpecialAttack;
             this.SpecialDefense = SpecialDefense;
             this.Speed = Speed;
-        }
-
-        public Dictionary<string, object> ToDict()
-        {
-            return new Dictionary<string, object>()
-            {
-                {nameof(this.Id).ToLower(), this.Id },
-                {nameof(this.PokemonNumber).ToLower(), this.PokemonNumber },
-                {nameof(this.Hp).ToLower(), this.Hp },
-                {nameof(this.Attack).ToLower(), this.Attack },
-                {nameof(this.Defense).ToLower(), this.Defense },
-                {nameof(this.SpecialAttack).ToLower(), this.SpecialAttack },
-                {nameof(this.SpecialDefense).ToLower(), this.SpecialDefense },
-                {nameof(this.Speed).ToLower(), this.Speed }
-            };
-        }
-
-        public override bool Equals(object obj)
-        {
-            var item = obj as BaseStats;
-            if (item == null)
-            {
-                return false;
-            }
-
-            return
-                item.Id.Equals(this.Id) &&
-                item.PokemonNumber.Equals(this.PokemonNumber) &&
-                item.Hp.Equals(this.Hp) &&
-                item.Attack.Equals(this.Attack) &&
-                item.Defense.Equals(this.Defense) &&
-                item.SpecialAttack.Equals(this.SpecialAttack) &&
-                item.SpecialDefense.Equals(this.SpecialDefense) &&
-                item.Speed.Equals(this.Speed);
-
-        }
-
-        public override int GetHashCode()
-        {
-            return this.GetHashCode();
         }
     }
 }

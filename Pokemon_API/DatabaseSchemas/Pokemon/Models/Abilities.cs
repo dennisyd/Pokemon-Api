@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
-using Newtonsoft.Json;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
-    public class Abilities
+    public class Abilities : DatabaseTable<Abilities>
     {
         [JsonIgnore]
         public int? Id { get; set; }
@@ -24,35 +24,6 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
             this.Id = Id;
             this.PokemonNumber = PokemonNumber;
             this.Ability = Ability;
-        }
-
-        public Dictionary<string, object> ToDict()
-        {
-            return new Dictionary<string, object>()
-            {
-                {nameof(this.Id).ToLower(), this.Id },
-                {nameof(this.PokemonNumber).ToLower(), this.PokemonNumber },
-                {nameof(this.Ability).ToLower(), this.Ability }
-            };
-        }
-
-        public override bool Equals(object obj)
-        {
-            var item = obj as Abilities;
-            if (item == null)
-            {
-                return false;
-            }
-
-            return
-                item.Id.Equals(this.Id) &&
-                item.PokemonNumber.Equals(this.PokemonNumber) &&
-                item.Ability.Equals(this.Ability);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.GetHashCode();
         }
     }
 }

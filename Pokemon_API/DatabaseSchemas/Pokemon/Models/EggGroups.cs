@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
-using Newtonsoft.Json;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
-    public class EggGroups
+    public class EggGroups : DatabaseTable<EggGroups>
     {
         [JsonIgnore]
         public int? Id { get; set; }
@@ -24,35 +24,6 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
             this.Id = Id;
             this.PokemonNumber = PokemonNumber;
             this.EggGroup = EggGroup;
-        }
-
-        public Dictionary<string, object> ToDict()
-        {
-            return new Dictionary<string, object>()
-            {
-                {nameof(this.Id).ToLower(), this.Id },
-                {nameof(this.PokemonNumber).ToLower(), this.PokemonNumber },
-                {nameof(this.EggGroup).ToLower(), this.EggGroup }
-            };
-        }
-
-        public override bool Equals(object obj)
-        {
-            var item = obj as EggGroups;
-            if (item == null)
-            {
-                return false;
-            }
-
-            return
-                item.Id.Equals(this.Id) &&
-                item.PokemonNumber.Equals(this.PokemonNumber) &&
-                item.EggGroup.Equals(this.EggGroup);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.GetHashCode();
         }
     }
 }

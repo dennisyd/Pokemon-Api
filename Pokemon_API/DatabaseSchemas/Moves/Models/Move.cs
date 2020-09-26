@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
-using Newtonsoft.Json;
+using Pokemon_API.Extensions;
 
 namespace Pokemon_API.DatabaseSchemas.Moves.Models
 {
-    public class Moves
+    public class Moves : DatabaseTable<Moves>
     {
         [JsonProperty(PropertyName="id", Order = 1)]
         public int? Id { get; set; }
@@ -36,9 +35,6 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
 
         [JsonProperty(PropertyName = "priority", Order = 10)]
         public int Priority { get; set; }
-
-        [JsonProperty(PropertyName = "flags", Order = 11)]
-        public List<string> Flags { get; set; }
 
         [JsonProperty(PropertyName = "critRatio", Order = 12)]
         public int CritRatio { get; set; }
@@ -74,57 +70,6 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
             this.Target = Target;
             this.Type = Type;
             this.ContestType = ContestType;
-        }
-
-        public Dictionary<string, object> ToDict()
-        {
-            return new Dictionary<string, object>()
-            {
-                {nameof(this.Id).ToLower(), this.Id },
-                {nameof(this.Name).ToLower(), this.Name },
-                {nameof(this.Number).ToLower(), this.Number },
-                {nameof(this.Accuracy).ToLower(), this.Accuracy },
-                {nameof(this.BasePower).ToLower(), this.BasePower },
-                {nameof(this.Category).ToLower(), this.Category },
-                {nameof(this.Description).ToLower(), this.Description },
-                {nameof(this.ShortDescription).ToLower(), this.ShortDescription },
-                {nameof(this.PP).ToLower(), this.PP },
-                {nameof(this.Priority).ToLower(), this.Priority },
-                {nameof(this.CritRatio).ToLower(), this.CritRatio },
-                {nameof(this.Target).ToLower(), this.Target },
-                {nameof(this.Type).ToLower(), this.Type },
-                {nameof(this.ContestType).ToLower(), this.ContestType },
-            };
-        }
-
-        public override bool Equals(object obj)
-        {
-            var item = obj as Moves;
-            if (item == null)
-            {
-                return false;
-            }
-
-            return
-                item.Id.Equals(this.Id) &&
-                item.Name.Equals(this.Name) &&
-                item.Number.Equals(this.Number) &&
-                item.Accuracy.Equals(this.Accuracy) &&
-                item.BasePower.Equals(this.BasePower) &&
-                item.Category.Equals(this.Category) &&
-                item.Description.Equals(this.Description) &&
-                item.ShortDescription.Equals(this.ShortDescription) &&
-                item.PP.Equals(this.PP) &&
-                item.Priority.Equals(this.Priority) &&
-                item.CritRatio.Equals(this.CritRatio) &&
-                item.Target.Equals(this.Target) &&
-                item.Type.Equals(this.Type) &&
-                item.ContestType.Equals(this.ContestType);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.GetHashCode();
         }
     }
 }
