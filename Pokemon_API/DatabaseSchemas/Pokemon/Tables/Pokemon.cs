@@ -21,7 +21,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             return base.GetDatabaseConnector();
         }
 
-        public async Task<List<Models.Pokemon>> Get(int number)
+        public async Task<Models.Pokemon> Get(int number)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>()
             {
@@ -29,10 +29,10 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             };
 
             List<Models.Pokemon> result = await Get(dict);
-            return result;
+            return result.FirstOrDefault();
         }
 
-        public async Task<List<Models.Pokemon>> Get(string name)
+        public async Task<Models.Pokemon> Get(string name)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>()
             {
@@ -40,7 +40,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             };
 
             List<Models.Pokemon> result = await Get(dict);
-            return result;
+            return result.FirstOrDefault();
         }
 
         public async Task<int?> Insert(Models.Pokemon obj)
@@ -74,13 +74,22 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
         public override Models.Pokemon DataReaderConverter(MySqlDataReader reader)
         {
             int id = int.Parse(reader["id"].ToString());
-            string name = reader["id"].ToString();
+            string name = reader["name"].ToString();
             int number = int.Parse(reader["number"].ToString());
             string species = reader["species"].ToString();
             float height = float.Parse(reader["height"].ToString());
             float weight = float.Parse(reader["weight"].ToString());
             string color = reader["color"].ToString();
-            int? evolutionLevel = int.Parse(reader["evolutionLevel"].ToString());
+
+            int? evolutionLevel;
+            if (string.IsNullOrEmpty(reader["evolutionLevel"].ToString()))
+            {
+                evolutionLevel = null;
+            }
+            else
+            {
+                evolutionLevel = int.Parse(reader["evolutionLevel"].ToString());
+            }
 
             return new Models.Pokemon(
                 Id: id,

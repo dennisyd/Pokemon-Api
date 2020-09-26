@@ -55,10 +55,9 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             int pokemonNumber = int.Parse(reader["pokemonNumber"].ToString());
             int moveNumber = int.Parse(reader["moveNumber"].ToString());
             int level = int.Parse(reader["level"].ToString());
-            bool isTm = bool.Parse(reader["isTM"].ToString());
-            bool isHm = bool.Parse(reader["isHM"].ToString());
-
-
+            var val = reader["IsTM"].ToString();
+            bool isTm = int.Parse(reader["IsTM"].ToString()) != 0;
+            bool isHm = int.Parse(reader["IsHM"].ToString()) != 0;
 
             return new Models.Moves(
                 Id: id,
