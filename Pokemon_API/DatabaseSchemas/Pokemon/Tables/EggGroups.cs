@@ -56,8 +56,8 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             string eggGroup = reader["eggGroup"].ToString();
 
             return new Models.EggGroups(
-                Id: id,
-                PokemonNumber: pokemonNumber,
+                id: id,
+                pokemonNumber: pokemonNumber,
                 EggGroup: eggGroup
             );
         }

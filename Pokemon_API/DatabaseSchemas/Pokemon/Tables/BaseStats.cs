@@ -62,13 +62,13 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             int speed = int.Parse(reader["speed"].ToString());
 
             return new Models.BaseStats(
-                Id: id,
-                PokemonNumber: pokemonNumber,
-                Hp: hp,
-                Attack: attack,
-                Defense: defense,
-                SpecialAttack: specialAttack,
-                SpecialDefense: specialDefense,
+                id: id,
+                pokemonNumber: pokemonNumber,
+                hp: hp,
+                attack: attack,
+                defense: defense,
+                specialAttack: specialAttack,
+                specialDefense: specialDefense,
                 Speed: speed
             );
         }

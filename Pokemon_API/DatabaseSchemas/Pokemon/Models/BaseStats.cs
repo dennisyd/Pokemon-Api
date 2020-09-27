@@ -35,17 +35,17 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public BaseStats(int? Id, int PokemonNumber, int Hp, int Attack, int Defense,
-            int SpecialAttack, int SpecialDefense, int Speed)
+        public BaseStats(int? id, int pokemonNumber, int hp, int attack, int defense,
+            int specialAttack, int specialDefense, int speed)
         {
-            this.Id = Id;
-            this.PokemonNumber = PokemonNumber;
-            this.Hp = Hp;
-            this.Attack = Attack;
-            this.Defense = Defense;
-            this.SpecialAttack = SpecialAttack;
-            this.SpecialDefense = SpecialDefense;
-            this.Speed = Speed;
+            this.Id = id;
+            this.PokemonNumber = pokemonNumber;
+            this.Hp = hp;
+            this.Attack = attack;
+            this.Defense = defense;
+            this.SpecialAttack = specialAttack;
+            this.SpecialDefense = specialDefense;
+            this.Speed = speed;
         }
     }
 }

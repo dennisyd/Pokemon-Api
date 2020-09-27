@@ -28,15 +28,15 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public Moves(int? Id, int PokemonNumber, int MoveNumber, int Level,
-            bool IsTM, bool IsHM)
+        public Moves(int? id, int pokemonNumber, int moveNumber, int level,
+            bool isTM, bool isHM)
         {
-            this.Id = Id;
-            this.PokemonNumber = PokemonNumber;
-            this.MoveNumber = MoveNumber;
-            this.Level = Level;
-            this.IsTM = IsTM;
-            this.IsHM = IsHM;
+            this.Id = id;
+            this.PokemonNumber = pokemonNumber;
+            this.MoveNumber = moveNumber;
+            this.Level = level;
+            this.IsTM = isTM;
+            this.IsHM = isHM;
         }
     }
 }

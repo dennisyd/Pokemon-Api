@@ -89,20 +89,20 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
             string contestType = reader["contestType"].ToString();
 
             return new Models.Moves(
-                Id: id,
-                Name: name,
-                Number: number,
-                Accuracy: accuracy,
-                BasePower: basePower,
-                Category: category,
-                Description: description,
-                ShortDescription: shortDescription,
-                PP: pp,
-                Priority: priority,
-                CritRatio: criticalRatio,
-                Target: target,
-                Type: type,
-                ContestType: contestType
+                id: id,
+                name: name,
+                number: number,
+                accuracy: accuracy,
+                basePower: basePower,
+                category: category,
+                description: description,
+                shortDescription: shortDescription,
+                pp: pp,
+                priority: priority,
+                critRatio: criticalRatio,
+                target: target,
+                type: type,
+                contestType: contestType
             );
         }
     }

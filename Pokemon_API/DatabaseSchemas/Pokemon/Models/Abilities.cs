@@ -19,11 +19,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public Abilities(int? Id, int PokemonNumber, string Ability)
+        public Abilities(int? id, int pokemonNumber, string ability)
         {
-            this.Id = Id;
-            this.PokemonNumber = PokemonNumber;
-            this.Ability = Ability;
+            this.Id = id;
+            this.PokemonNumber = pokemonNumber;
+            this.Ability = ability;
         }
     }
 }

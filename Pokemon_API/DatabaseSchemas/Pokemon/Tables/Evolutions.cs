@@ -56,8 +56,8 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             string evolution = reader["evolution"].ToString();
 
             return new Models.Evolutions(
-                Id: id,
-                PokemonNumber: pokemonNumber,
+                id: id,
+                pokemonNumber: pokemonNumber,
                 Evolution: evolution
             );
         }

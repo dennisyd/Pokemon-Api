@@ -19,11 +19,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public EggGroups(int? Id, int PokemonNumber, string EggGroup)
+        public EggGroups(int? id, int pokemonNumber, string eggGroup)
         {
-            this.Id = Id;
-            this.PokemonNumber = PokemonNumber;
-            this.EggGroup = EggGroup;
+            this.Id = id;
+            this.PokemonNumber = pokemonNumber;
+            this.EggGroup = eggGroup;
         }
     }
 }

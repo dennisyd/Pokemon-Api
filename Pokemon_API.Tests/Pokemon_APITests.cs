@@ -83,26 +83,26 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.DamageMultiplier.Models.Multiplier(
-                Id: null,
-                Name: "test",
-                Normal: 10,
-                Fighting: 10,
-                Flying: 10,
-                Poison: 10,
-                Ground: 10,
-                Rock: 10,
-                Bug: 10,
-                Ghost: 10,
-                Steel: 10,
-                Fire: 10,
-                Water: 10,
-                Grass: 10,
-                Electric: 10,
-                Psychic: 10,
-                Ice: 10,
-                Dragon: 10,
-                Dark: 10,
-                Fairy: 10
+                id: null,
+                name: "test",
+                normal: 10,
+                fighting: 10,
+                flying: 10,
+                poison: 10,
+                ground: 10,
+                rock: 10,
+                bug: 10,
+                ghost: 10,
+                steel: 10,
+                fire: 10,
+                water: 10,
+                grass: 10,
+                electric: 10,
+                psychic: 10,
+                ice: 10,
+                dragon: 10,
+                dark: 10,
+                fairy: 10
             );
 
             await table.Delete(data.Name);
@@ -149,9 +149,9 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Moves.Models.Flags(
-                Id: null,
-                MoveNumber: -1,
-                Flag: "test"
+                id: null,
+                moveNumber: -1,
+                flag: "test"
             );
 
             await table.Delete(data.MoveNumber);
@@ -201,20 +201,20 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Moves.Models.Moves(
-                Id: null,
-                Name: "test",
-                Number: -1,
-                Accuracy: -2,
-                BasePower: -3,
-                Category: "category",
-                Description: "description",
-                ShortDescription: "shortDescription",
-                PP: -4,
-                Priority: -5,
-                CritRatio: -6,
-                Target: "target",
-                Type: "type",
-                ContestType: "contestType"
+                id: null,
+                name: "test",
+                number: -1,
+                accuracy: -2,
+                basePower: -3,
+                category: "category",
+                description: "description",
+                shortDescription: "shortDescription",
+                pp: -4,
+                priority: -5,
+                critRatio: -6,
+                target: "target",
+                type: "type",
+                contestType: "contestType"
             ); 
 
             await table.Delete(data.Name);
@@ -263,9 +263,9 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Abilities(
-                Id: null,
-                PokemonNumber: -1,
-                Ability: "ability"
+                id: null,
+                pokemonNumber: -1,
+                ability: "ability"
             );
 
             await table.Delete(data.PokemonNumber);
@@ -315,13 +315,13 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.BaseStats(
-                Id: null,
-                PokemonNumber: -1,
-                Hp: -2,
-                Attack: -3,
-                Defense: -4,
-                SpecialAttack: -5,
-                SpecialDefense: -6,
+                id: null,
+                pokemonNumber: -1,
+                hp: -2,
+                attack: -3,
+                defense: -4,
+                specialAttack: -5,
+                specialDefense: -6,
                 Speed: -7
             );
 
@@ -371,8 +371,8 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Evolutions(
-                Id: null,
-                PokemonNumber: -1,
+                id: null,
+                pokemonNumber: -1,
                 Evolution: "evolution"
             );
 
@@ -423,9 +423,9 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.GenderRatio(
-                Id: null,
-                PokemonNumber: -1,
-                Male: 1f,
+                id: null,
+                pokemonNumber: -1,
+                male: 1f,
                 Female: 2f
             );
 
@@ -475,11 +475,11 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Moves(
-                Id: null,
-                PokemonNumber: -1,
-                MoveNumber: -2,
-                Level: -3,
-                IsTM: false,
+                id: null,
+                pokemonNumber: -1,
+                moveNumber: -2,
+                level: -3,
+                isTM: false,
                 IsHM: false
             );
 
@@ -530,14 +530,14 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Pokemon(
-                Id: null,
-                Name: "test",
-                Number: -1,
-                Species: "species",
-                Height: -2f,
-                Weight: -3f,
-                Color: "color",
-                EvolutionLevel: null
+                id: null,
+                name: "test",
+                number: -1,
+                species: "species",
+                height: -2f,
+                weight: -3f,
+                color: "color",
+                evolutionLevel: null
             );
 
             await table.Delete(data.Number);

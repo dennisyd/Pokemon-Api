@@ -22,12 +22,12 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public GenderRatio(int? Id, int PokemonNumber, float Male, float Female)
+        public GenderRatio(int? id, int pokemonNumber, float male, float female)
         {
-            this.Id = Id;
-            this.PokemonNumber = PokemonNumber;
-            this.Male = Male;
-            this.Female = Female;
+            this.Id = id;
+            this.PokemonNumber = pokemonNumber;
+            this.Male = male;
+            this.Female = female;
         }
     }
 }

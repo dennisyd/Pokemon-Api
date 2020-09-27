@@ -57,9 +57,9 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             float female = float.Parse(reader["female"].ToString());
 
             return new Models.GenderRatio(
-                Id: id,
-                PokemonNumber: pokemonNumber,
-                Male: male,
+                id: id,
+                pokemonNumber: pokemonNumber,
+                male: male,
                 Female: female
             );
         }

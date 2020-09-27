@@ -19,11 +19,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public Evolutions(int? Id, int PokemonNumber, string Evolution)
+        public Evolutions(int? id, int pokemonNumber, string evolution)
         {
-            this.Id = Id;
-            this.PokemonNumber = PokemonNumber;
-            this.Evolution = Evolution;
+            this.Id = id;
+            this.PokemonNumber = pokemonNumber;
+            this.Evolution = evolution;
         }
     }
 }

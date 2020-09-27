@@ -60,11 +60,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             bool isHm = int.Parse(reader["IsHM"].ToString()) != 0;
 
             return new Models.Moves(
-                Id: id,
-                PokemonNumber: pokemonNumber,
-                MoveNumber: moveNumber,
-                Level: level,
-                IsTM: isTm,
+                id: id,
+                pokemonNumber: pokemonNumber,
+                moveNumber: moveNumber,
+                level: level,
+                isTM: isTm,
                 IsHM: isHm
             );
         }

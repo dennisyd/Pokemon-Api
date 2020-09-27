@@ -34,16 +34,17 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
         {
         }
 
-        public Pokemon(int? Id, string Name, int Number, string Species, float Height, float Weight, string Color, int? EvolutionLevel)
+        public Pokemon(int? id, string name, int number, string species,
+            float height, float weight, string color, int? evolutionLevel)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Number = Number;
-            this.Species = Species;
-            this.Height = Height;
-            this.Weight = Weight;
-            this.Color = Color;
-            this.EvolutionLevel = EvolutionLevel;
+            this.Id = id;
+            this.Name = name;
+            this.Number = number;
+            this.Species = species;
+            this.Height = height;
+            this.Weight = weight;
+            this.Color = color;
+            this.EvolutionLevel = evolutionLevel;
         }
     }
 }

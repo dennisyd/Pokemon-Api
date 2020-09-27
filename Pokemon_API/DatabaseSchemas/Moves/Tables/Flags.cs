@@ -56,9 +56,9 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
             string flag = reader["flag"].ToString();
 
             return new Models.Flags(
-                Id: id,
-                MoveNumber: moveNumber,
-                Flag: flag
+                id: id,
+                moveNumber: moveNumber,
+                flag: flag
             );
         }
     }

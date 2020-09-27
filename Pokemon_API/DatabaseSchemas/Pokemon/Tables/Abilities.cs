@@ -56,9 +56,9 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             string ability = reader["ability"].ToString();
 
             return new Models.Abilities(
-                Id: id,
-                PokemonNumber: pokemonNumber,
-                Ability: ability
+                id: id,
+                pokemonNumber: pokemonNumber,
+                ability: ability
             );
         }
     }

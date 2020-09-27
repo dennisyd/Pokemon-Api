@@ -92,14 +92,14 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             }
 
             return new Models.Pokemon(
-                Id: id,
-                Name: name,
-                Number: number,
-                Species: species,
-                Height: height,
-                Weight: weight,
-                Color: color,
-                EvolutionLevel: evolutionLevel
+                id: id,
+                name: name,
+                number: number,
+                species: species,
+                height: height,
+                weight: weight,
+                color: color,
+                evolutionLevel: evolutionLevel
             );
         }
     }

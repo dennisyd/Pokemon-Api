@@ -19,11 +19,11 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
         {
         }
 
-        public Flags(int? Id, int MoveNumber, string Flag)
+        public Flags(int? id, int moveNumber, string flag)
         {
-            this.Id = Id;
-            this.MoveNumber = MoveNumber;
-            this.Flag = Flag;
+            this.Id = id;
+            this.MoveNumber = moveNumber;
+            this.Flag = flag;
         }
     }
 }

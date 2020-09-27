@@ -52,24 +52,24 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Models
         {
         }
 
-        public Moves(int? Id, string Name, int Number, int Accuracy, int BasePower,
-            string Category, string Description, string ShortDescription, int PP,
-            int Priority, int CritRatio, string Target, string Type, string ContestType)
+        public Moves(int? id, string name, int number, int accuracy, int basePower,
+            string category, string description, string shortDescription, int pp,
+            int priority, int critRatio, string target, string type, string contestType)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Number = Number;
-            this.Accuracy = Accuracy;
-            this.BasePower = BasePower;
-            this.Category = Category;
-            this.Description = Description;
-            this.ShortDescription = ShortDescription;
-            this.PP = PP;
-            this.Priority = Priority;
-            this.CritRatio = CritRatio;
-            this.Target = Target;
-            this.Type = Type;
-            this.ContestType = ContestType;
+            this.Id = id;
+            this.Name = name;
+            this.Number = number;
+            this.Accuracy = accuracy;
+            this.BasePower = basePower;
+            this.Category = category;
+            this.Description = description;
+            this.ShortDescription = shortDescription;
+            this.PP = pp;
+            this.Priority = priority;
+            this.CritRatio = critRatio;
+            this.Target = target;
+            this.Type = type;
+            this.ContestType = contestType;
         }
     }
 }
