@@ -50,5 +50,42 @@ namespace Pokemon_API.ResponseModels
         public PokemonResponse()
         {
         }
+
+        public PokemonResponse(string Name, int Number, string Species, GenderRatio GenderRatio, BaseStats BaseStats,
+            List<Moves> Moves, List<string> Abilities, float Height, float Weight, string Color, List<string> Evolutions,
+            int? EvolutionLevel, List<string> EggGroups)
+        {
+            this.Name = Name;
+            this.Number = Number;
+            this.Species = Species;
+            this.GenderRatio = GenderRatio;
+            this.BaseStats = BaseStats;
+            this.Moves = Moves;
+            this.Abilities = Abilities;
+            this.Height = Height;
+            this.Weight = Weight;
+            this.Color = Color;
+            this.Evolutions = Evolutions;
+            this.EvolutionLevel = EvolutionLevel;
+            this.EggGroups = EggGroups;
+        }
+
+        public PokemonResponse(Pokemon pokemon, GenderRatio genderRatio, BaseStats baseStats, List<Moves> moves,
+            List<string> abilities, List<string> evolutions, List<string> eggGroup)
+        {
+            this.Name = pokemon.Name;
+            this.Number = pokemon.Number;
+            this.Species = pokemon.Species;
+            this.GenderRatio = genderRatio;
+            this.BaseStats = baseStats;
+            this.Moves = moves;
+            this.Abilities = abilities;
+            this.Height = pokemon.Height;
+            this.Weight = pokemon.Weight;
+            this.Color = pokemon.Color;
+            this.Evolutions = evolutions;
+            this.EvolutionLevel = pokemon.EvolutionLevel;
+            this.EggGroups = eggGroup;
+        }
     }
 }

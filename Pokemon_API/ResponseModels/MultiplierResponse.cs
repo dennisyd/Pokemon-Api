@@ -67,31 +67,31 @@ namespace Pokemon_API.ResponseModels
         {
         }
 
-        public MultiplierResponse(string Name, float Normal, float Fighting,
-            float Flying, float Poison, float Ground, float Rock, float Bug,
-            float Ghost, float Steel, float Fire, float Water, float Grass,
-            float Electric, float Psychic, float Ice, float Dragon,
-            float Dark, float Fairy)
+        public MultiplierResponse(string name, float normal, float fighting,
+            float flying, float poison, float ground, float rock, float bug,
+            float ghost, float steel, float fire, float water, float grass,
+            float electric, float psychic, float ice, float dragon,
+            float dark, float fairy)
         {
-            this.Name = Name;
-            this.Normal = Normal;
-            this.Fighting = Fighting;
-            this.Flying = Flying;
-            this.Poison = Poison;
-            this.Ground = Ground;
-            this.Rock = Rock;
-            this.Bug = Bug;
-            this.Ghost = Ghost;
-            this.Steel = Steel;
-            this.Fire = Fire;
-            this.Water = Water;
-            this.Grass = Grass;
-            this.Electric = Electric;
-            this.Psychic = Psychic;
-            this.Ice = Ice;
-            this.Dragon = Dragon;
-            this.Dark = Dark;
-            this.Fairy = Fairy;
+            this.Name = name;
+            this.Normal = normal;
+            this.Fighting = fighting;
+            this.Flying = flying;
+            this.Poison = poison;
+            this.Ground = ground;
+            this.Rock = rock;
+            this.Bug = bug;
+            this.Ghost = ghost;
+            this.Steel = steel;
+            this.Fire = fire;
+            this.Water = water;
+            this.Grass = grass;
+            this.Electric = electric;
+            this.Psychic = psychic;
+            this.Ice = ice;
+            this.Dragon = dragon;
+            this.Dark = dark;
+            this.Fairy = fairy;
         }
     }
 }
