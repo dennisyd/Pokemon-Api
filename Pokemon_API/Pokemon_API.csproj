@@ -21,7 +21,6 @@
     <Folder Include="RequestModels\" />
     <Folder Include="DataBaseInterface\" />
     <Folder Include="PokemonBuilder\" />
-    <Folder Include="PokemonModels\" />
     <Folder Include="DatabaseSchemas\" />
     <Folder Include="DatabaseSchemas\DamageMultiplier\" />
     <Folder Include="DatabaseSchemas\Moves\" />
