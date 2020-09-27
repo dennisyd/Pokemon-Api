@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 using Amazon.Lambda.APIGatewayEvents;
 
-namespace DarkSkyMicroservice.Extensions
+namespace Pokemon_API.Extensions
 {
     public static class APIGatewayProxyResponseExtensions
     {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 using RestSharp;
 
-namespace DarkSkyMicroservice.Extensions
+namespace Pokemon_API.Extensions
 {
     public static class RestfulAPI
     {

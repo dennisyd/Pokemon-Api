@@ -8,7 +8,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace DarkSkyMicroservice.Extensions
+namespace Pokemon_API.Extensions
 {
     public static class Logger
     {

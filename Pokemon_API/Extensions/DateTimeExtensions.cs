@@ -6,7 +6,7 @@
 
 using System;
 
-namespace DarkSkyMicroservice.Extensions
+namespace Pokemon_API.Extensions
 {
     /// <summary>
     /// Extension Methods for System.DateTime

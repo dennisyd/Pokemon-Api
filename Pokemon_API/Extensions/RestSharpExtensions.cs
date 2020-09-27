@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 using RestSharp;
 
-namespace DarkSkyMicroservice.Extensions
+namespace Pokemon_API.Extensions
 {
     public static class RestSharpExtensions
     {

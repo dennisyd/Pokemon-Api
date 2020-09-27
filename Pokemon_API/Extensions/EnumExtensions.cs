@@ -6,7 +6,7 @@
 
 using System;
 
-namespace DarkSkyMicroservice.Extensions
+namespace Pokemon_API.Extensions
 {
     public static class EnumExtensions
     {
