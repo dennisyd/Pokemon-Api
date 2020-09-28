@@ -1,6 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 using Newtonsoft.Json;
+
+using Pokemon_API.DatabaseSchemas.DamageMultiplier.Models;
 
 namespace Pokemon_API.ResponseModels
 {
@@ -67,31 +69,27 @@ namespace Pokemon_API.ResponseModels
         {
         }
 
-        public MultiplierResponse(string name, float normal, float fighting,
-            float flying, float poison, float ground, float rock, float bug,
-            float ghost, float steel, float fire, float water, float grass,
-            float electric, float psychic, float ice, float dragon,
-            float dark, float fairy)
+        public MultiplierResponse(Multiplier multiplier)
         {
-            this.Name = name;
-            this.Normal = normal;
-            this.Fighting = fighting;
-            this.Flying = flying;
-            this.Poison = poison;
-            this.Ground = ground;
-            this.Rock = rock;
-            this.Bug = bug;
-            this.Ghost = ghost;
-            this.Steel = steel;
-            this.Fire = fire;
-            this.Water = water;
-            this.Grass = grass;
-            this.Electric = electric;
-            this.Psychic = psychic;
-            this.Ice = ice;
-            this.Dragon = dragon;
-            this.Dark = dark;
-            this.Fairy = fairy;
+            this.Name = multiplier.Name;
+            this.Normal = multiplier.Normal;
+            this.Fighting = multiplier.Fighting;
+            this.Flying = multiplier.Flying;
+            this.Poison = multiplier.Poison;
+            this.Ground = multiplier.Ground;
+            this.Rock = multiplier.Rock;
+            this.Bug = multiplier.Bug;
+            this.Ghost = multiplier.Ghost;
+            this.Steel = multiplier.Steel;
+            this.Fire = multiplier.Fire;
+            this.Water = multiplier.Water;
+            this.Grass = multiplier.Grass;
+            this.Electric = multiplier.Electric;
+            this.Psychic = multiplier.Psychic;
+            this.Ice = multiplier.Ice;
+            this.Dragon = multiplier.Dragon;
+            this.Dark = multiplier.Dark;
+            this.Fairy = multiplier.Fairy;
         }
     }
 }

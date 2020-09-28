@@ -2,6 +2,8 @@
 
 using Newtonsoft.Json;
 
+using Pokemon_API.DatabaseSchemas.Moves.Models;
+
 namespace Pokemon_API.ResponseModels
 {
     public class MoveResponse
@@ -52,25 +54,22 @@ namespace Pokemon_API.ResponseModels
         {
         }
 
-        public MoveResponse(string name, int number, int accuracy, int basePower,
-            string category, string description, string shortDescription, int pp,
-            int priority, int critRatio, List<string> flags, string target, string type,
-            string contestType)
+        public MoveResponse(Moves move, List<string> flags)
         {
-            this.Name = name;
-            this.Number = number;
-            this.Accuracy = accuracy;
-            this.BasePower = basePower;
-            this.Category = category;
-            this.Description = description;
-            this.ShortDescription = shortDescription;
-            this.PP = pp;
-            this.Priority = priority;
-            this.CritRatio = critRatio;
-            this.Flags = flags;
-            this.Target = target;
-            this.Type = type;
-            this.ContestType = contestType;
+            this.Name = move.Name;
+            this.Number = move.Number;
+            this.Accuracy = move.Accuracy;
+            this.BasePower = move.BasePower;
+            this.Category = move.Category;
+            this.Description = move.Description;
+            this.ShortDescription = move.ShortDescription;
+            this.PP = move.PP;
+            this.Priority = move.Priority;
+            this.CritRatio = move.CritRatio;
+            this.Flags = (flags.Count != 0) ? flags : null;
+            this.Target = move.Target;
+            this.Type = move.Type;
+            this.ContestType = move.ContestType;
         }
     }
 }

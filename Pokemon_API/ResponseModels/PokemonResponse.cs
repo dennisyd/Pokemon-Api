@@ -38,36 +38,17 @@ namespace Pokemon_API.ResponseModels
         [JsonProperty(PropertyName = "color", Order = 10)]
         public string Color { get; set; }
 
-        [JsonProperty(PropertyName = "evolutions", Order = 11)]
+        [JsonProperty(PropertyName = "evolutions", Order = 11, NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Evolutions { get; set; }
 
         [JsonProperty(PropertyName = "evolutionLevel", Order = 12, NullValueHandling = NullValueHandling.Ignore)]
         public int? EvolutionLevel { get; set; }
 
-        [JsonProperty(PropertyName = "eggGroups", Order = 13)]
+        [JsonProperty(PropertyName = "eggGroups", Order = 13, NullValueHandling = NullValueHandling.Ignore)]
         public List<string> EggGroups { get; set; }
 
         public PokemonResponse()
         {
-        }
-
-        public PokemonResponse(string Name, int Number, string Species, GenderRatio GenderRatio, BaseStats BaseStats,
-            List<Moves> Moves, List<string> Abilities, float Height, float Weight, string Color, List<string> Evolutions,
-            int? EvolutionLevel, List<string> EggGroups)
-        {
-            this.Name = Name;
-            this.Number = Number;
-            this.Species = Species;
-            this.GenderRatio = GenderRatio;
-            this.BaseStats = BaseStats;
-            this.Moves = Moves;
-            this.Abilities = Abilities;
-            this.Height = Height;
-            this.Weight = Weight;
-            this.Color = Color;
-            this.Evolutions = Evolutions;
-            this.EvolutionLevel = EvolutionLevel;
-            this.EggGroups = EggGroups;
         }
 
         public PokemonResponse(Pokemon pokemon, GenderRatio genderRatio, BaseStats baseStats, List<Moves> moves,
@@ -79,13 +60,13 @@ namespace Pokemon_API.ResponseModels
             this.GenderRatio = genderRatio;
             this.BaseStats = baseStats;
             this.Moves = moves;
-            this.Abilities = abilities;
+            this.Abilities = (abilities.Count != 0) ? abilities : null;
             this.Height = pokemon.Height;
             this.Weight = pokemon.Weight;
             this.Color = pokemon.Color;
-            this.Evolutions = evolutions;
+            this.Evolutions = (evolutions.Count != 0) ? evolutions : null;
             this.EvolutionLevel = pokemon.EvolutionLevel;
-            this.EggGroups = eggGroup;
+            this.EggGroups = (eggGroup.Count != 0) ? eggGroup : null;
         }
     }
 }
