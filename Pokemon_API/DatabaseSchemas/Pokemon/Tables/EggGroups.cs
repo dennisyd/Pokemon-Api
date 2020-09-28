@@ -58,7 +58,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             return new Models.EggGroups(
                 id: id,
                 pokemonNumber: pokemonNumber,
-                EggGroup: eggGroup
+                eggGroup: eggGroup
             );
         }
 

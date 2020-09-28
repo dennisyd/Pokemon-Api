@@ -65,7 +65,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
                 moveNumber: moveNumber,
                 level: level,
                 isTM: isTm,
-                IsHM: isHm
+                isHM: isHm
             );
         }
     }

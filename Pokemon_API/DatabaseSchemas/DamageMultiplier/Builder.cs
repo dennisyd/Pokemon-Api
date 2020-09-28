@@ -16,13 +16,9 @@ namespace Pokemon_API.DatabaseSchemas.DamageMultiplier
             multiplierTable = new Tables.Multiplier();
         }
 
-        public async Task<MultiplierResponse> Build(string t1, string t2)
+        public async Task<MultiplierResponse> Build(string t1)
         {
             Models.Multiplier type1 = await multiplierTable.Get(t1);
-            Models.Multiplier type2 = await multiplierTable.Get(t2);
-
-            //need to do type multiplication
-
             return new MultiplierResponse(type1);
         }
     }

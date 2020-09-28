@@ -69,7 +69,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
                 defense: defense,
                 specialAttack: specialAttack,
                 specialDefense: specialDefense,
-                Speed: speed
+                speed: speed
             );
         }
     }

@@ -58,7 +58,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             return new Models.Evolutions(
                 id: id,
                 pokemonNumber: pokemonNumber,
-                Evolution: evolution
+                evolution: evolution
             );
         }
     }

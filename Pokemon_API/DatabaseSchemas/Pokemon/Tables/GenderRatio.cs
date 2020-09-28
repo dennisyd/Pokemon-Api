@@ -60,7 +60,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
                 id: id,
                 pokemonNumber: pokemonNumber,
                 male: male,
-                Female: female
+                female: female
             );
         }
     }
