@@ -15,6 +15,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
         private Tables.GenderRatio genderRatioTable;
         private Tables.Moves movesTable;
         private Tables.Pokemon pokemonTable;
+        private Tables.Types typesTable;
 
         public Builder()
         {
@@ -25,6 +26,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
             genderRatioTable = new Tables.GenderRatio();
             movesTable = new Tables.Moves();
             pokemonTable = new Tables.Pokemon();
+            typesTable = new Tables.Types();
         }
 
         public async Task<PokemonResponse> Build(string id)
@@ -39,8 +41,14 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
             Models.GenderRatio genderRatio = await genderRatioTable.Get(pokemon.Number);
             List<Models.Moves> moves = await movesTable.Get(pokemon.Number);
 
+            Models.Types typesModel = await typesTable.Get(pokemon.Number);
+            List<string> types = new List<string>() { typesModel.Type1 };
+            if (!string.IsNullOrEmpty(typesModel.Type2)) {
+                types.Add(typesModel.Type1);
+            }
+
             return new PokemonResponse(pokemon, genderRatio, baseStats, moves,
-                abilities, evolutions, eggGroups);
+                abilities, evolutions, eggGroups, types);
         }
     }
 }

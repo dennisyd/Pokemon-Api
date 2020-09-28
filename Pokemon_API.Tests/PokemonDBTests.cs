@@ -368,5 +368,89 @@ namespace Pokemon_API.Tests
 
             Console.WriteLine(SUCCESS);
         }
+
+
+        [Fact]
+        public async void Test_Pokemon_Types()
+        {
+            Console.WriteLine("-- | Pokemon | Types | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
+
+            var table = new DatabaseSchemas.Pokemon.Tables.Types();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Insert One Type --");
+
+            var data = new DatabaseSchemas.Pokemon.Models.Types(
+                id: null,
+                pokemonNumber: -1,
+                type1: "type1"
+            );
+
+            await table.Delete(data.PokemonNumber);
+
+            int? result = await table.Insert(data);
+            Assert.NotNull(result);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Get One Type --");
+
+            DatabaseSchemas.Pokemon.Models.Types getName = await table.Get(data.PokemonNumber);
+
+            Assert.NotNull(getName);
+            Assert.NotNull(getName.Id);
+
+            data.Id = getName.Id;
+            Assert.Equal(data, getName);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Delete Name--");
+
+            result = await table.Delete(data.PokemonNumber);
+            Assert.NotNull(result);
+
+            getName = await table.Get(data.PokemonNumber);
+            Assert.Null(getName);
+
+            Console.WriteLine("-- Testing Insert Two Types --");
+
+            data = new DatabaseSchemas.Pokemon.Models.Types(
+                id: null,
+                pokemonNumber: -1,
+                type1: "type1",
+                type2: "type2"
+            );
+
+            result = await table.Insert(data);
+            Assert.NotNull(result);
+
+            Console.WriteLine(SUCCESS);
+
+            Console.WriteLine("-- Testing Get Two Types --");
+            DatabaseSchemas.Pokemon.Models.Types getNumber = await table.Get(data.PokemonNumber);
+
+            Assert.NotNull(getNumber);
+            Assert.NotNull(getNumber.Id);
+
+            data.Id = getNumber.Id;
+            Assert.Equal(data, getNumber);
+
+            Console.WriteLine(SUCCESS);
+            Console.WriteLine("-- Testing Delete Number --");
+
+            result = await table.Delete(data.PokemonNumber);
+            Assert.NotNull(result);
+
+            getName = await table.Get(data.PokemonNumber);
+            Assert.Null(getName);
+
+            Console.WriteLine(SUCCESS);
+        }
     }
 }
