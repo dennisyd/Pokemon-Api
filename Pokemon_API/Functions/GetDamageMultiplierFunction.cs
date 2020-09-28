@@ -30,7 +30,7 @@ namespace Pokemon_API.Functions
 
             if (string.IsNullOrEmpty(type1))
             {
-                return APIGatewayProxyResponseExtensions.Fail($"Please enter atleast one damage multiplier type");
+                return APIGatewayProxyResponseExtensions.Fail($"Please enter atleast one pokemon type");
             }
 
             type1 = Uri.UnescapeDataString(type1);
@@ -52,10 +52,17 @@ namespace Pokemon_API.Functions
             }
         }
 
-        public async Task<MultiplierResponse> GetResponse(string type1, string type2)
+        public async Task<MultiplierResponse> GetResponse(string t1, string t2)
         {
-            MultiplierResponse response  = await  new Builder().Build(type1, type2);
-            return response;
+            MultiplierResponse type1  = await new Builder().Build(t1);
+            MultiplierResponse type2  = await new Builder().Build(t2);
+
+            if (string.IsNullOrEmpty(t2))
+            {
+                return type1;
+            }
+            //do multiplication logic here
+            return type2;
         }
     }
 }

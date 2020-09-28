@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 using Pokemon_API.Extensions;
 using Pokemon_API.ResponseModels;
+using Pokemon_API.DatabaseSchemas.Moves;
 
 namespace Pokemon_API.Functions
 {
@@ -51,7 +52,8 @@ namespace Pokemon_API.Functions
 
         public async Task<MoveResponse> GetResponse(string id)
         {
-            return null;
+            MoveResponse response = await new Builder().Build(id);
+            return response;
         }
     }
 }

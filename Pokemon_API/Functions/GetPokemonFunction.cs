@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 using Pokemon_API.Extensions;
 using Pokemon_API.ResponseModels;
+using Pokemon_API.DatabaseSchemas.Pokemon;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -58,6 +59,8 @@ namespace Pokemon_API
 
         public async Task<PokemonResponse> GetResponse(string id, string level)
         {
+            PokemonResponse response = await new Builder().Build(id);
+            //do level adjustment logic here
             return null;
         }
     }
