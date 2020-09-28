@@ -322,7 +322,7 @@ namespace Pokemon_API.Tests
                 defense: -4,
                 specialAttack: -5,
                 specialDefense: -6,
-                Speed: -7
+                speed: -7
             );
 
             await table.Delete(data.PokemonNumber);
@@ -373,7 +373,7 @@ namespace Pokemon_API.Tests
             var data = new DatabaseSchemas.Pokemon.Models.Evolutions(
                 id: null,
                 pokemonNumber: -1,
-                Evolution: "evolution"
+                evolution: "evolution"
             );
 
             await table.Delete(data.PokemonNumber);
@@ -426,7 +426,7 @@ namespace Pokemon_API.Tests
                 id: null,
                 pokemonNumber: -1,
                 male: 1f,
-                Female: 2f
+                female: 2f
             );
 
             await table.Delete(data.PokemonNumber);
@@ -480,7 +480,7 @@ namespace Pokemon_API.Tests
                 moveNumber: -2,
                 level: -3,
                 isTM: false,
-                IsHM: false
+                isHM: false
             );
 
             await table.Delete(data.PokemonNumber);
