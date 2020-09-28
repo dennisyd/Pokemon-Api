@@ -18,9 +18,7 @@
   <ItemGroup>
     <Folder Include="Functions\" />
     <Folder Include="ResponseModels\" />
-    <Folder Include="RequestModels\" />
     <Folder Include="DataBaseInterface\" />
-    <Folder Include="PokemonBuilder\" />
     <Folder Include="DatabaseSchemas\" />
     <Folder Include="DatabaseSchemas\DamageMultiplier\" />
     <Folder Include="DatabaseSchemas\Moves\" />
