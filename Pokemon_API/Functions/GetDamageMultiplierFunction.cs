@@ -54,15 +54,16 @@ namespace Pokemon_API.Functions
 
         public async Task<MultiplierResponse> GetResponse(string t1, string t2)
         {
-            MultiplierResponse type1  = await new Builder().Build(t1);
-            MultiplierResponse type2  = await new Builder().Build(t2);
+            Builder builder = new Builder();
+            MultiplierResponse type1  = await builder.Build(t1);
 
             if (string.IsNullOrEmpty(t2))
             {
                 return type1;
             }
-            //do multiplication logic here
-            return type2;
+
+            MultiplierResponse type2 = await builder.Build(t2);
+            return builder.CombineTypes(type1, type2);
         }
     }
 }
