@@ -13,39 +13,35 @@ using Newtonsoft.Json;
 
 using Pokemon_API.Extensions;
 using Pokemon_API.ResponseModels;
+using Pokemon_API.DatabaseSchemas.DamageMultiplier;
 
-// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
-[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
-namespace Pokemon_API
+namespace Pokemon_API.Functions
 {
-    public class GetPokemonFunction
+    public class GetDamageMultiplierFunction
     {
-        /// <summary>
-        /// Default constructor that Lambda will invoke.
-        /// </summary>
-        public GetPokemonFunction()
+        public GetDamageMultiplierFunction()
         {
         }
 
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            string id = request.PathParameters["id"];
-            string level = request.PathParameters["level"];
+            string type1 = request.PathParameters["type1"];
+            string type2 = request.PathParameters["type2"];
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(type1))
             {
-                return APIGatewayProxyResponseExtensions.Fail($"Please enter pokemon name or number");
+                return APIGatewayProxyResponseExtensions.Fail($"Please enter atleast one damage multiplier type");
             }
 
-            id = Uri.UnescapeDataString(id);
-
+            type1 = Uri.UnescapeDataString(type1);
+            type2 = Uri.UnescapeDataString(type2);
 
             try
             {
-                PokemonResponse jsonResponse = await GetResponse(id, level);
+                MultiplierResponse jsonResponse = await GetResponse(type1, type2);
                 if (jsonResponse == null)
                 {
-                    return APIGatewayProxyResponseExtensions.Fail($"Pokemon: {id} not found");
+                    return APIGatewayProxyResponseExtensions.Fail($"Damage Multipler: {type1} not found");
                 }
                 return APIGatewayProxyResponseExtensions.Sucess(JsonConvert.SerializeObject(jsonResponse));
             }
@@ -56,9 +52,10 @@ namespace Pokemon_API
             }
         }
 
-        public async Task<PokemonResponse> GetResponse(string id, string level)
+        public async Task<MultiplierResponse> GetResponse(string type1, string type2)
         {
-            return null;
+            MultiplierResponse response  = await  new Builder().Build(type1, type2);
+            return response;
         }
     }
 }

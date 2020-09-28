@@ -14,23 +14,17 @@ using Newtonsoft.Json;
 using Pokemon_API.Extensions;
 using Pokemon_API.ResponseModels;
 
-// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
-[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
-namespace Pokemon_API
+namespace Pokemon_API.Functions
 {
-    public class GetPokemonFunction
+    public class GetMoveFunction
     {
-        /// <summary>
-        /// Default constructor that Lambda will invoke.
-        /// </summary>
-        public GetPokemonFunction()
+        public GetMoveFunction()
         {
         }
 
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
             string id = request.PathParameters["id"];
-            string level = request.PathParameters["level"];
 
             if (string.IsNullOrEmpty(id))
             {
@@ -39,10 +33,9 @@ namespace Pokemon_API
 
             id = Uri.UnescapeDataString(id);
 
-
             try
             {
-                PokemonResponse jsonResponse = await GetResponse(id, level);
+                MoveResponse jsonResponse = await GetResponse(id);
                 if (jsonResponse == null)
                 {
                     return APIGatewayProxyResponseExtensions.Fail($"Pokemon: {id} not found");
@@ -56,9 +49,10 @@ namespace Pokemon_API
             }
         }
 
-        public async Task<PokemonResponse> GetResponse(string id, string level)
+        public async Task<MoveResponse> GetResponse(string id)
         {
             return null;
         }
     }
 }
+

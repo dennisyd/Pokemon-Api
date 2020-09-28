@@ -1,43 +1,109 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: >
-    Pokemon_API
-    
-    pokemon_api
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Transform" : "AWS::Serverless-2016-10-31",
+    "Description" : "Pokemon API",
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
-Globals:
-    Function:
-        Runtime: dotnetcore2.1
-        Timeout: 10
+    "Parameters" : {
+        "Stage" : {
+            "Description": "The environment this application is deployed to (should be dev, staging or prod)",
+            "Default": "dev",
+            "Type": "String"
+        }
+    },
 
-Resources:
+    "Globals" : {
+      "Api" : {
+        "Cors" : {
+          "AllowMethods": "'*'",
+          "AllowHeaders": "'*'",
+          "AllowOrigin": "'*'"
+        }
+      }
+    },
 
-    Pokemon_APIFunction:
-        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-        Properties:
-            CodeUri: ./artifacts/Pokemon_API.zip
-            Handler: Pokemon_API::Pokemon_API.Function::FunctionHandler
-            Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-                Variables:
-                    PARAM1: VALUE # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
-            Events:
-                CatchAll:
-                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-                    Properties:
-                        Path: /{proxy+}
-                        Method: any 
+    "Resources" : {
 
-Outputs:
+        "GetPokemon" : {
+            "Type" : "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "Pokemon_API::Pokemon_API.Functions.GetPokemonFunction::Execute",
+                "Runtime": "dotnetcore2.1",
+                "CodeUri": "publish/Pokemon_API",
+                "MemorySize": 2048,
+                "Timeout": 30,
+                "Role": null,
+                "Policies": [ "AWSLambdaBasicExecutionRole" ],
+                "Events": {
+                    "PostResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/pokemon/{id}/{level}",
+                            "Method": "GET"
+                        }
+                    }
+                }
+            }
+        },
+        "GetMove" : {
+            "Type" : "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "Pokemon_API::Pokemon_API.Functions.GetMoveFunction::Execute",
+                "Runtime": "dotnetcore2.1",
+                "CodeUri": "publish/Pokemon_API",
+                "MemorySize": 128,
+                "Timeout": 30,
+                "Role": null,
+                "Policies": [ "AWSLambdaBasicExecutionRole" ],
+                "Events": {
+                    "PostResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/moves/{id}",
+                            "Method": "GET"
+                        }
+                    }
+                }
+            }
+        },
+        "GetDamageMultiplier" : {
+            "Type" : "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute",
+                "Runtime": "dotnetcore2.1",
+                "CodeUri": "publish/Pokemon_API",
+                "MemorySize": 2048,
+                "Timeout": 30,
+                "Role": null,
+                "Policies": [ "AWSLambdaBasicExecutionRole" ],
+                "Events": {
+                    "PostResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/damage_multiplier/{type1}/{type2}",
+                            "Method": "GET"
+                        }
+                    }
+                }
+            }
+        }
+    },
 
-    Pokemon_APIURL:
-      Description: "API Gateway endpoint URL for Prod environment for Pokemon_API Function"
-      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/proxy"
-
-    Pokemon_APIFunctionArn:
-      Description: "Pokemon_API Lambda Function ARN"
-      Value: !GetAtt Pokemon_APIFunction.Arn
-
-    Pokemon_APIFunctionIamRole:
-      Description: "Implicit IAM Role created for Pokemon_API function"
-      Value: !GetAtt Pokemon_APIFunctionRole.Arn
+    "Outputs" : {
+        "ApiURL" : {
+            "Description" : "API endpoint URL",
+            "Value" : {
+                "Fn::Join": [
+                    "",
+                    [
+                        "https://",
+                        { "Ref": "ServerlessRestApi"},
+                        ".execute-api.",
+                        { "Ref": "AWS::Region" },
+                        ".amazonaws.com/",
+                        {"Ref": "Stage"}
+                    ]
+                ]
+            }
+        }
+    }
+}      
