@@ -8,7 +8,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
 {
     public class Builder
     {
-        private Tables.Abilities abilitiesTables;
+        private Tables.Abilities abilitiesTable;
         private Tables.BaseStats baseStatsTable;
         private Tables.EggGroups eggGroupsTable;
         private Tables.Evolutions evolutionsTable;
@@ -19,7 +19,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
 
         public Builder()
         {
-            abilitiesTables = new Tables.Abilities();
+            abilitiesTable = new Tables.Abilities();
             baseStatsTable = new Tables.BaseStats();
             eggGroupsTable = new Tables.EggGroups();
             evolutionsTable = new Tables.Evolutions();
@@ -34,21 +34,47 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
             Models.Pokemon pokemon = (int.TryParse(id, out int number)) ?
                 await pokemonTable.Get(number) : await pokemonTable.Get(id);
 
-            List<string> abilities = (await abilitiesTables.Get(pokemon.Number)).Select(a => a.Ability).ToList();
+            List<string> abilities = await getAbilities(pokemon.Number);
             Models.BaseStats baseStats = await baseStatsTable.Get(pokemon.Number);
-            List<string> eggGroups = (await eggGroupsTable.Get(pokemon.Number)).Select(e => e.EggGroup).ToList();
+            List<string> eggGroups = await getEggGroups(pokemon.Number);
             List<string> evolutions = (await evolutionsTable.Get(pokemon.Number)).Select(e => e.Evolution).ToList();
             Models.GenderRatio genderRatio = await genderRatioTable.Get(pokemon.Number);
             List<Models.Moves> moves = await movesTable.Get(pokemon.Number);
+            moves = (moves.Count > 0) ? null : moves;
 
             Models.Types typesModel = await typesTable.Get(pokemon.Number);
             List<string> types = new List<string>() { typesModel.Type1 };
             if (!string.IsNullOrEmpty(typesModel.Type2)) {
-                types.Add(typesModel.Type1);
+                types.Add(typesModel.Type2);
             }
 
             return new PokemonResponse(pokemon, genderRatio, baseStats, moves,
                 abilities, evolutions, eggGroups, types);
         }
+
+        private async Task<List<string>> getAbilities(int pokemonNumber)
+        {
+            Models.Abilities abilities = await abilitiesTable.Get(pokemonNumber);
+            List<string> list = new List<string>() { abilities.Ability1, abilities.Ability2, abilities.Ability3, abilities.Ability4 };
+            list.RemoveAll(item => string.IsNullOrEmpty(item));
+            return list;
+        }
+
+        private async Task<List<string>> getEggGroups(int pokemonNumber)
+        {
+            Models.EggGroups eggGroup = await eggGroupsTable.Get(pokemonNumber);
+            List<string> list = new List<string>() { eggGroup.EggGroup1, eggGroup.EggGroup2 };
+            list.RemoveAll(item => string.IsNullOrEmpty(item));
+            return list;
+        }
+
+        private async Task<List<string>> getTypes(int pokemonNumber)
+        {
+            Models.Types types = await typesTable.Get(pokemonNumber);
+            List<string> list = new List<string>() { types.Type1, types.Type2 };
+            list.RemoveAll(item => string.IsNullOrEmpty(item));
+            return list;
+        }
+
     }
 }

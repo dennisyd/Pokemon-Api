@@ -20,13 +20,13 @@ namespace Pokemon_API.ResponseModels
         [JsonProperty(PropertyName = "types", Order = 4)]
         public List<string> Types { get; set; }
 
-        [JsonProperty(PropertyName = "genderRatio", Order = 5)]
+        [JsonProperty(PropertyName = "genderRatio", Order = 5, NullValueHandling = NullValueHandling.Ignore)]
         public GenderRatio GenderRatio { get; set; }
 
         [JsonProperty(PropertyName = "baseStats", Order = 6)]
         public BaseStats BaseStats { get; set; }
 
-        [JsonProperty(PropertyName = "moves", Order = 7)]
+        [JsonProperty(PropertyName = "moves", Order = 7, NullValueHandling = NullValueHandling.Ignore)]
         public List<Moves> Moves { get; set; }
 
         [JsonProperty(PropertyName = "abilities", Order = 8)]
@@ -59,17 +59,16 @@ namespace Pokemon_API.ResponseModels
         {
             this.Name = pokemon.Name;
             this.Number = pokemon.Number;
-            this.Species = pokemon.Species;
             this.Types = types;
             this.GenderRatio = genderRatio;
             this.BaseStats = baseStats;
             this.Moves = moves;
             this.Abilities = (abilities.Count != 0) ? abilities : null;
-            this.Height = pokemon.Height;
-            this.Weight = pokemon.Weight;
+            this.Height = pokemon.Height_M;
+            this.Weight = pokemon.Weight_Kg;
             this.Color = pokemon.Color;
             this.Evolutions = (evolutions.Count != 0) ? evolutions : null;
-            this.EvolutionLevel = pokemon.EvolutionLevel;
+            this.EvolutionLevel = pokemon.EvoLevel;
             this.EggGroups = (eggGroup.Count != 0) ? eggGroup : null;
         }
     }
