@@ -21,7 +21,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             return base.GetDatabaseConnector();
         }
 
-        public async Task<List<Models.EggGroups>> Get(int number)
+        public async Task<Models.EggGroups> Get(int number)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>()
             {
@@ -29,7 +29,7 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             };
 
             List<Models.EggGroups> result = await Get(dict);
-            return result;
+            return result.FirstOrDefault();
         }
 
         public async Task<int?> Insert(Models.EggGroups obj)
@@ -53,12 +53,14 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
         {
             int id = int.Parse(reader["id"].ToString());
             int pokemonNumber = int.Parse(reader["pokemonNumber"].ToString());
-            string eggGroup = reader["eggGroup"].ToString();
+            string eggGroup1 = reader["eggGroup1"].ToString();
+            string eggGroup2 = (!string.IsNullOrEmpty(reader["eggGroup2"].ToString())) ? reader["eggGroup2"].ToString() : null;
 
             return new Models.EggGroups(
                 id: id,
                 pokemonNumber: pokemonNumber,
-                eggGroup: eggGroup
+                eggGroup1: eggGroup1,
+                eggGroup2: eggGroup2
             );
         }
 

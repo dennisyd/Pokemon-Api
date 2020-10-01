@@ -6,45 +6,56 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class Pokemon : DatabaseTable<Pokemon>
     {
-        [JsonIgnore]
         public int? Id { get; set; }
 
-        [JsonProperty(PropertyName="name", Order = 1)]
-        public string Name { get; set; }
-
-        [JsonProperty(PropertyName = "number", Order = 2)]
         public int Number { get; set; }
 
-        [JsonProperty(PropertyName = "species", Order = 3)]
-        public string Species { get; set; }
+        public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "height", Order = 4)]
-        public float Height { get; set; }
+        public float Height_M { get; set; }
 
-        [JsonProperty(PropertyName = "weight", Order = 5)]
-        public float Weight { get; set; }
+        public float Weight_Kg { get; set; }
 
-        [JsonProperty(PropertyName = "color", Order = 6)]
         public string Color { get; set; }
 
-        [JsonProperty(PropertyName = "evolutionLevel", Order = 7)]
-        public int? EvolutionLevel { get; set; }
+        public string Gender { get; set; }
+
+        public bool? CanHatch { get; set; }
+
+        public string Prevo { get; set; }
+
+        public int? EvoLevel { get; set; }
+
+        public string EvoType { get; set; }
+
+        public string EvoItem { get; set; }
+
+        public string EvoCondition { get; set; }
 
         public Pokemon()
         {
         }
 
-        public Pokemon(int? id, string name, int number, string species,
-            float height, float weight, string color, int? evolutionLevel)
+        public Pokemon(int? id, int number, string name, float height_m,
+            float weight_kg, string color, string gender = default(string),
+            bool? canHatch = null, string prevo = default(string),
+            int? evoLevel = null, string evoType = default(string),
+            string evoItem = default(string), string
+            evoCondition = default(string))
         {
             this.Id = id;
             this.Name = name;
             this.Number = number;
-            this.Species = species;
-            this.Height = height;
-            this.Weight = weight;
+            this.Height_M = height_m;
+            this.Weight_Kg = weight_kg;
             this.Color = color;
-            this.EvolutionLevel = evolutionLevel;
+            this.Gender = gender;
+            this.CanHatch = canHatch;
+            this.Prevo = prevo;
+            this.EvoLevel = evoLevel;
+            this.EvoType = evoType;
+            this.EvoItem = evoItem;
+            this.EvoCondition = evoCondition;
         }
     }
 }

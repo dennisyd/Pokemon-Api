@@ -76,13 +76,20 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
             int id = int.Parse(reader["id"].ToString());
             string name = reader["name"].ToString();
             int number = int.Parse(reader["number"].ToString());
-            string species = reader["species"].ToString();
-            float height = float.Parse(reader["height"].ToString());
-            float weight = float.Parse(reader["weight"].ToString());
+            float height_m = float.Parse(reader["height_m"].ToString());
+            float weight_kg = float.Parse(reader["weight_kg"].ToString());
             string color = reader["color"].ToString();
+            string gender = (!string.IsNullOrEmpty(reader["gender"].ToString())) ? reader["gender"].ToString() : null;
+            bool? canHatch = null;
+            if (!string.IsNullOrEmpty(reader["canHatch"].ToString()))
+            {
+                bool overrideHatch;
+                canHatch = (bool.TryParse(reader["canHatch"].ToString(), out overrideHatch)) ? overrideHatch : canHatch;
+            }
+            string prevo = (!string.IsNullOrEmpty(reader["prevo"].ToString())) ? reader["prevo"].ToString() : null;
 
             int? evolutionLevel;
-            if (string.IsNullOrEmpty(reader["evolutionLevel"].ToString()))
+            if (string.IsNullOrEmpty(reader["evoLevel"].ToString()))
             {
                 evolutionLevel = null;
             }
@@ -91,15 +98,24 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
                 evolutionLevel = int.Parse(reader["evolutionLevel"].ToString());
             }
 
+            string evoType = (!string.IsNullOrEmpty(reader["evoType"].ToString())) ? reader["evoType"].ToString() : null;
+            string evoItem = (!string.IsNullOrEmpty(reader["evoItem"].ToString())) ? reader["evoItem"].ToString() : null;
+            string evoCondition = (!string.IsNullOrEmpty(reader["evoCondition"].ToString())) ? reader["evoCondition"].ToString() : null;
+
             return new Models.Pokemon(
                 id: id,
                 name: name,
                 number: number,
-                species: species,
-                height: height,
-                weight: weight,
+                height_m: height_m,
+                weight_kg: weight_kg,
                 color: color,
-                evolutionLevel: evolutionLevel
+                gender: gender,
+                canHatch: canHatch,
+                prevo: prevo,
+                evoLevel: evolutionLevel,
+                evoType: evoType,
+                evoItem: evoItem,
+                evoCondition: evoCondition
             );
         }
     }

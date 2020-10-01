@@ -6,24 +6,33 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Models
 {
     public class Abilities : DatabaseTable<Abilities>
     {
-        [JsonIgnore]
+
         public int? Id { get; set; }
 
-        [JsonProperty(PropertyName="pokemonNumber", Order = 1)]
         public int PokemonNumber { get; set; }
 
-        [JsonProperty(PropertyName="ability", Order = 2)]
-        public string Ability { get; set; }
+        public string Ability1 { get; set; }
+
+        public string Ability2 { get; set; }
+
+        public string Ability3 { get; set; }
+
+        public string Ability4 { get; set; }
 
         public Abilities()
         {
         }
 
-        public Abilities(int? id, int pokemonNumber, string ability)
+        public Abilities(int? id, int pokemonNumber, string ability1,
+            string ability2 = default(string), string ability3 = default(string),
+            string ability4 = default(string))
         {
             this.Id = id;
             this.PokemonNumber = pokemonNumber;
-            this.Ability = ability;
+            this.Ability1 = ability1;
+            this.Ability2 = ability2;
+            this.Ability3 = ability3;
+            this.Ability4 = ability4;
         }
     }
 }
