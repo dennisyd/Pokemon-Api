@@ -65,5 +65,25 @@ namespace Pokemon_API.Tests
 
             Console.WriteLine(SUCCESS);
         }
+
+        [Fact]
+        public async void TestGetPokemon()
+        {
+            ResponseModels.PokemonResponse pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build("1"));
+
+            Assert.NotNull(pokemon);
+
+            pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build("bulbasaur"));
+
+            Assert.NotNull(pokemon);
+        }
+
+        [Fact]
+        public async void TestGetMultiplier()
+        {
+            ResponseModels.MultiplierResponse pokemon = await (new DatabaseSchemas.DamageMultiplier.Builder().Build("normal"));
+
+            Assert.NotNull(pokemon);
+        }
     }
 }

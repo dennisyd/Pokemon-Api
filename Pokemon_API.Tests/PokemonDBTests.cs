@@ -42,7 +42,7 @@ namespace Pokemon_API.Tests
             var data = new DatabaseSchemas.Pokemon.Models.Abilities(
                 id: null,
                 pokemonNumber: -1,
-                ability: "ability"
+                ability1: "ability"
             );
 
             await table.Delete(data.PokemonNumber);
@@ -53,8 +53,7 @@ namespace Pokemon_API.Tests
             Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Get --");
 
-            List<DatabaseSchemas.Pokemon.Models.Abilities> list = await table.Get(data.PokemonNumber);
-            var get = list.FirstOrDefault();
+            DatabaseSchemas.Pokemon.Models.Abilities get = await table.Get(data.PokemonNumber);
 
             Assert.NotNull(get);
             Assert.NotNull(get.Id);
@@ -68,8 +67,8 @@ namespace Pokemon_API.Tests
             result = await table.Delete(data.PokemonNumber);
             Assert.NotNull(result);
 
-            list = await table.Get(data.PokemonNumber);
-            Assert.Empty(list);
+            get = await table.Get(data.PokemonNumber);
+            Assert.Null(get);
 
             Console.WriteLine(SUCCESS);
         }
@@ -310,11 +309,9 @@ namespace Pokemon_API.Tests
                 id: null,
                 name: "test",
                 number: -1,
-                species: "species",
-                height: -2f,
-                weight: -3f,
-                color: "color",
-                evolutionLevel: null
+                height_m: -2f,
+                weight_kg: -3f,
+                color: "color"
             );
 
             await table.Delete(data.Number);
@@ -368,7 +365,6 @@ namespace Pokemon_API.Tests
 
             Console.WriteLine(SUCCESS);
         }
-
 
         [Fact]
         public async void Test_Pokemon_Types()
