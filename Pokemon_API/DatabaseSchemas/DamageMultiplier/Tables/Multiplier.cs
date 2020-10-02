@@ -15,10 +15,9 @@ namespace Pokemon_API.DatabaseSchemas.DamageMultiplier.Tables
 
         public Multiplier() { }
 
-        public override DatabaseConnector GetDatabaseConnector()
+        public async override Task<DatabaseConnector> GetDatabaseConnector()
         {
-            connection.SetDatabase(Database);
-            return base.GetDatabaseConnector();
+            return await DamageMultiplierDB.getDBConnection();
         }
 
         public async Task<Models.Multiplier> Get(string name)
