@@ -69,7 +69,7 @@ namespace Pokemon_API.Tests
         [Fact]
         public async void TestGetPokemon()
         {
-            ResponseModels.PokemonResponse pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build("1"));
+            ResponseModels.PokemonResponse pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build(1));
 
             Assert.NotNull(pokemon);
 
@@ -81,9 +81,17 @@ namespace Pokemon_API.Tests
         [Fact]
         public async void TestGetMultiplier()
         {
-            ResponseModels.MultiplierResponse pokemon = await (new DatabaseSchemas.DamageMultiplier.Builder().Build("normal"));
+            ResponseModels.MultiplierResponse dmgMult = await (new DatabaseSchemas.DamageMultiplier.Builder().Build("normal"));
 
-            Assert.NotNull(pokemon);
+            Assert.NotNull(dmgMult);
+        }
+
+        [Fact]
+        public async void TestGetMove()
+        {
+            ResponseModels.MoveResponse move = await (new DatabaseSchemas.Moves.Builder().Build(1));
+
+            Assert.NotNull(move);
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
             int basePower = int.Parse(reader["basePower"].ToString());
             string category = reader["category"].ToString();
             string description = reader["description"].ToString();
-            string shortDescription = reader["shortDescription"].ToString();
+            string shortDescription = reader["shortDesc"].ToString();
             int pp = int.Parse(reader["pp"].ToString());
             int priority = int.Parse(reader["priority"].ToString());
             int criticalRatio = int.Parse(reader["critRatio"].ToString());
@@ -96,7 +96,7 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
                 basePower: basePower,
                 category: category,
                 description: description,
-                shortDescription: shortDescription,
+                shortDesc: shortDescription,
                 pp: pp,
                 priority: priority,
                 critRatio: criticalRatio,

@@ -95,12 +95,12 @@ namespace Pokemon_API.Tests
             var data = new DatabaseSchemas.Moves.Models.Moves(
                 id: null,
                 name: "test",
-                number: -1,
+                number: -10,
                 accuracy: -2,
                 basePower: -3,
                 category: "category",
                 description: "description",
-                shortDescription: "shortDescription",
+                shortDesc: "shortDescription",
                 pp: -4,
                 priority: -5,
                 critRatio: -6,
@@ -119,6 +119,13 @@ namespace Pokemon_API.Tests
 
             DatabaseSchemas.Moves.Models.Moves get = await table.Get(data.Name);
 
+            Assert.NotNull(get);
+            Assert.NotNull(get.Id);
+
+            data.Id = get.Id;
+            Assert.Equal(data, get);
+
+            get = await table.Get(data.Number);
             Assert.NotNull(get);
             Assert.NotNull(get.Id);
 

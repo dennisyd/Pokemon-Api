@@ -17,14 +17,24 @@ namespace Pokemon_API.DatabaseSchemas.Moves
             movesTable = new Tables.Move();
         }
 
+        public Task<MoveResponse> Build(int id)
+        {
+            return this.Build(id.ToString());
+        }
+
         public async Task<MoveResponse> Build(string id)
         {
-            Models.Moves move = (int.TryParse(id, out int number)) ?
-                await movesTable.Get(number) : await movesTable.Get(id);
-
-            List<string> flags = (await flagsTable.Get(move.Number)).Select(f => f.Flag).ToList();
-
-            return new MoveResponse(move, flags);
+            if(int.TryParse(id,out int result))
+            {
+                int number = int.Parse(id);
+                Models.Moves move = await movesTable.Get(number);
+                List<string> flags = (await flagsTable.Get(move.Number)).Select(f => f.Flag).ToList();
+                return new MoveResponse(move, flags);
+            }
+            else
+            {
+                return new MoveResponse();
+            }
         }
     }
 }

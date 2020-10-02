@@ -62,7 +62,7 @@ namespace Pokemon_API.ResponseModels
             this.BasePower = move.BasePower;
             this.Category = move.Category;
             this.Description = move.Description;
-            this.ShortDescription = move.ShortDescription;
+            this.ShortDescription = move.ShortDesc;
             this.PP = move.PP;
             this.Priority = move.Priority;
             this.CritRatio = move.CritRatio;

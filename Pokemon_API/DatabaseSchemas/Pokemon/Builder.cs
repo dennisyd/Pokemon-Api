@@ -29,6 +29,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
             typesTable = new Tables.Types();
         }
 
+        public Task<PokemonResponse> Build(int id)
+        {
+            return this.Build(id.ToString());
+        }
+
         public async Task<PokemonResponse> Build(string id)
         {
             Models.Pokemon pokemon = (int.TryParse(id, out int number)) ?
