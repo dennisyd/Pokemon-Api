@@ -19,10 +19,6 @@
     <Folder Include="Functions\" />
     <Folder Include="ResponseModels\" />
     <Folder Include="DataBaseInterface\" />
-    <Folder Include="DatabaseSchemas\" />
-    <Folder Include="DatabaseSchemas\DamageMultiplier\" />
-    <Folder Include="DatabaseSchemas\Moves\" />
-    <Folder Include="DatabaseSchemas\Pokemon\" />
     <Folder Include="DatabaseSchemas\DamageMultiplier\Models\" />
     <Folder Include="DatabaseSchemas\Moves\Models\" />
     <Folder Include="DatabaseSchemas\Pokemon\Models\" />

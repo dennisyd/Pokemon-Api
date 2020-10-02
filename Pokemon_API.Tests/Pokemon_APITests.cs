@@ -11,6 +11,9 @@ using Amazon.Lambda.APIGatewayEvents;
 using Pokemon_API;
 
 using Pokemon_API.Extensions;
+using Pokemon_API.DatabaseSchemas.Pokemon;
+using Pokemon_API.DatabaseSchemas.DamageMultiplier;
+using Pokemon_API.DatabaseSchemas.Moves;
 
 namespace Pokemon_API.Tests
 {
@@ -25,20 +28,12 @@ namespace Pokemon_API.Tests
         [Fact]
         public async void TestDBSchemaConnections()
         {
-
             Console.WriteLine("-- | Damage Multipliers | Multipliers | --");
             Console.WriteLine("-- Testing Connection --");
             DatabaseConnector connection;
-            bool isConnected;
 
-            var multiplier = new DatabaseSchemas.DamageMultiplier.Tables.Multiplier();
-
-            Console.WriteLine(multiplier.Database);
-            Console.WriteLine(multiplier.TableName);
-
-            connection = multiplier.GetDatabaseConnector();
-            isConnected = await connection.IsConnected();
-            Assert.True(isConnected);
+            connection = await DamageMultiplierDB.getDBConnection();
+            Assert.True(connection.Connection.State == System.Data.ConnectionState.Open);
             await connection.Disconnect();
 
             Console.WriteLine(SUCCESS);
@@ -46,10 +41,8 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- | Moves | Flags | --");
             Console.WriteLine("-- Testing Connection --");
 
-            var moves = new DatabaseSchemas.Moves.Tables.Flags();
-            connection = moves.GetDatabaseConnector();
-            isConnected = await connection.IsConnected();
-            Assert.True(isConnected);
+            connection = await MovesDB.getDBConnection();
+            Assert.True(connection.Connection.State == System.Data.ConnectionState.Open);
             await connection.Disconnect();
 
             Console.WriteLine(SUCCESS);
@@ -57,10 +50,8 @@ namespace Pokemon_API.Tests
             Console.WriteLine("-- | Pokemon | BaseStats | --");
             Console.WriteLine("-- Testing Connection --");
 
-            var pokemon = new DatabaseSchemas.Pokemon.Tables.BaseStats();
-            connection = pokemon.GetDatabaseConnector();
-            isConnected = await connection.IsConnected();
-            Assert.True(isConnected);
+            connection = await PokemonDB.getDBConnection();
+            Assert.True(connection.Connection.State == System.Data.ConnectionState.Open);
             await connection.Disconnect();
 
             Console.WriteLine(SUCCESS);
