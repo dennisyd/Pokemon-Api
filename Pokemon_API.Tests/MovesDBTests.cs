@@ -15,6 +15,7 @@ using Pokemon_API.DatabaseSchemas.Moves;
 
 namespace Pokemon_API.Tests
 {
+    [Collection("Sequential")]
     public class MovesDBTests
     {
         const string SUCCESS = "SUCCESS";
@@ -23,6 +24,13 @@ namespace Pokemon_API.Tests
         {
         }
 
+        [Fact]
+        public async void TestGetMove()
+        {
+            ResponseModels.MoveResponse move = await (new DatabaseSchemas.Moves.Builder().Build(1));
+
+            Assert.NotNull(move);
+        }
 
         [Fact]
         public async void Test_Moves_Flags()

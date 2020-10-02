@@ -15,12 +15,25 @@ using Pokemon_API.DatabaseSchemas.Pokemon;
 
 namespace Pokemon_API.Tests
 {
+    [Collection("Sequential")]
     public class PokemonDBTests
     {
         const string SUCCESS = "SUCCESS";
 
         public PokemonDBTests()
         {
+        }
+
+        [Fact]
+        public async void TestGetPokemon()
+        {
+            ResponseModels.PokemonResponse pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build(1));
+
+            Assert.NotNull(pokemon);
+
+            pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build("bulbasaur"));
+
+            Assert.NotNull(pokemon);
         }
 
         [Fact]

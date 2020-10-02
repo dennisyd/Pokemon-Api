@@ -15,12 +15,22 @@ using Pokemon_API.DatabaseSchemas.DamageMultiplier;
 
 namespace Pokemon_API.Tests
 {
+    [Collection("Sequential")]
     public class DamageMultiplierTests
     {
         const string SUCCESS = "SUCCESS";
 
         public DamageMultiplierTests()
         {
+        }
+
+
+        [Fact]
+        public async void TestGetMultiplier()
+        {
+            ResponseModels.MultiplierResponse dmgMult = await (new DatabaseSchemas.DamageMultiplier.Builder().Build("normal"));
+
+            Assert.NotNull(dmgMult);
         }
 
         [Fact]
