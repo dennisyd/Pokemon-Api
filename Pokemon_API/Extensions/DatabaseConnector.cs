@@ -8,7 +8,6 @@ namespace Pokemon_API.Extensions
 {
     public class DatabaseConnector
     {
-        protected string id;
         protected static string Password = "pE#31$5u1P0425";
         protected static string Username = "admin";
         protected static int Port = 3306;
@@ -33,7 +32,7 @@ namespace Pokemon_API.Extensions
 
         public DatabaseConnector()
         {
-            id = new Random().Next(0, 100).ToString();
+
         }
 
         public void SetDatabase(string database) {

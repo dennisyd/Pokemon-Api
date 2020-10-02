@@ -10,18 +10,17 @@ namespace Pokemon_API.Extensions
     {
         public abstract string Database { get; }
         public abstract string TableName { get; }
-        public DatabaseConnector connection { get { return GetDatabaseConnector().Result; } }
+        public DatabaseConnector connection = DatabaseConnector.Instance();
 
 
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        public async virtual Task<DatabaseConnector> GetDatabaseConnector()
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual DatabaseConnector GetDatabaseConnector()
         {
             return connection;
         }
 
         internal async Task<List<T>> Get(Dictionary<string, object> values)
         {
+            DatabaseConnector connection = GetDatabaseConnector();
             if(!await connection.IsConnected())
             {
                 Console.WriteLine($"Failed to connect to {Database} | {TableName}");
@@ -70,6 +69,8 @@ namespace Pokemon_API.Extensions
 
         internal async Task<int?> Insert(Dictionary<string, object> values)
         {
+            DatabaseConnector connection = GetDatabaseConnector();
+
             if (!await connection.IsConnected())
             {
                 Console.WriteLine($"Failed to connect to {Database} | {TableName}");
@@ -119,6 +120,8 @@ namespace Pokemon_API.Extensions
 
         internal async Task<int?> Delete(Dictionary<string, object> values)
         {
+            DatabaseConnector connection = GetDatabaseConnector();
+
             if (!await connection.IsConnected())
             {
                 Console.WriteLine($"Failed to connect to {Database} | {TableName}");

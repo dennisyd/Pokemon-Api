@@ -15,9 +15,10 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
 
         public Types() { }
 
-        public async override Task<DatabaseConnector> GetDatabaseConnector()
+        public override DatabaseConnector GetDatabaseConnector()
         {
-            return await PokemonDB.getDBConnection();
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
         }
 
         public async Task<Models.Types> Get(int number)

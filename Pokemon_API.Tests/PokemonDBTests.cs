@@ -11,7 +11,6 @@ using Amazon.Lambda.APIGatewayEvents;
 using Pokemon_API;
 
 using Pokemon_API.Extensions;
-using Pokemon_API.DatabaseSchemas.Pokemon;
 
 namespace Pokemon_API.Tests
 {
@@ -27,9 +26,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_Abilities()
         {
             Console.WriteLine("-- | Pokemon | Abilities | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.Abilities();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Abilities(
@@ -70,9 +77,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_BaseStats()
         {
             Console.WriteLine("-- | Pokemon | BaseStats | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.BaseStats();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.BaseStats(
@@ -118,9 +133,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_Evolutions()
         {
             Console.WriteLine("-- | Pokemon | Evolutions | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.Evolutions();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Evolutions(
@@ -162,9 +185,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_GenderRatio()
         {
             Console.WriteLine("-- | Pokemon | GenderRatio | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.GenderRatio();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.GenderRatio(
@@ -206,9 +237,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_Moves()
         {
             Console.WriteLine("-- | Pokemon | Moves | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.Moves();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Moves(
@@ -253,9 +292,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_Pokemon()
         {
             Console.WriteLine("-- | Pokemon | Pokemon | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.Pokemon();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Pokemon(
@@ -323,9 +370,17 @@ namespace Pokemon_API.Tests
         public async void Test_Pokemon_Types()
         {
             Console.WriteLine("-- | Pokemon | Types | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Pokemon.Tables.Types();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert One Type --");
 
             var data = new DatabaseSchemas.Pokemon.Models.Types(

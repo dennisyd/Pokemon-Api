@@ -14,9 +14,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
         public override string TableName => "Abilities";
 
         public Abilities() { }
-        public async override Task<DatabaseConnector> GetDatabaseConnector()
+
+        public override DatabaseConnector GetDatabaseConnector()
         {
-            return await PokemonDB.getDBConnection();
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
         }
 
         public async Task<Models.Abilities> Get(int number)

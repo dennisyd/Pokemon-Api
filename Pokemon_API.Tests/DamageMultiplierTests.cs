@@ -11,7 +11,6 @@ using Amazon.Lambda.APIGatewayEvents;
 using Pokemon_API;
 
 using Pokemon_API.Extensions;
-using Pokemon_API.DatabaseSchemas.DamageMultiplier;
 
 namespace Pokemon_API.Tests
 {
@@ -27,9 +26,17 @@ namespace Pokemon_API.Tests
         public async void Test_DamageMultiplier_Multiplier()
         {
             Console.WriteLine("-- | Damage Multipliers | Multipliers | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.DamageMultiplier.Tables.Multiplier();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.DamageMultiplier.Models.Multiplier(

@@ -11,7 +11,6 @@ using Amazon.Lambda.APIGatewayEvents;
 using Pokemon_API;
 
 using Pokemon_API.Extensions;
-using Pokemon_API.DatabaseSchemas.Moves;
 
 namespace Pokemon_API.Tests
 {
@@ -28,9 +27,17 @@ namespace Pokemon_API.Tests
         public async void Test_Moves_Flags()
         {
             Console.WriteLine("-- | Moves | Flags | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Moves.Tables.Flags();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Moves.Models.Flags(
@@ -72,9 +79,17 @@ namespace Pokemon_API.Tests
         public async void Test_Moves_Moves()
         {
             Console.WriteLine("-- | Moves | Move | --");
+            Console.WriteLine("-- Testing Connection --");
+            DatabaseConnector connection;
+            bool isConnected;
 
             var table = new DatabaseSchemas.Moves.Tables.Move();
+            connection = table.GetDatabaseConnector();
+            isConnected = await connection.IsConnected();
+            Assert.True(isConnected);
+            await connection.Disconnect();
 
+            Console.WriteLine(SUCCESS);
             Console.WriteLine("-- Testing Insert --");
 
             var data = new DatabaseSchemas.Moves.Models.Moves(

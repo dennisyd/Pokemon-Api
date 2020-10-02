@@ -15,9 +15,10 @@ namespace Pokemon_API.DatabaseSchemas.Moves.Tables
 
         public Move() { }
 
-        public async override Task<DatabaseConnector> GetDatabaseConnector()
+        public override DatabaseConnector GetDatabaseConnector()
         {
-            return await MovesDB.getDBConnection();
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
         }
 
         public async Task<Models.Moves> Get(string name)

@@ -14,9 +14,11 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
         public override string TableName => "BaseStats";
 
         public BaseStats() { }
-        public async override Task<DatabaseConnector> GetDatabaseConnector()
+
+        public override DatabaseConnector GetDatabaseConnector()
         {
-            return await PokemonDB.getDBConnection();
+            connection.SetDatabase(Database);
+            return base.GetDatabaseConnector();
         }
 
         public async Task<Models.BaseStats> Get(int number)
