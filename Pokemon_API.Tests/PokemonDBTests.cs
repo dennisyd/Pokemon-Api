@@ -12,6 +12,9 @@ using Pokemon_API;
 
 using Pokemon_API.Extensions;
 using Pokemon_API.DatabaseSchemas.Pokemon;
+using Pokemon_API.Functions;
+
+using Newtonsoft.Json;
 
 namespace Pokemon_API.Tests
 {
@@ -28,11 +31,18 @@ namespace Pokemon_API.Tests
         public async void TestGetPokemon()
         {
             ResponseModels.PokemonResponse pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build(1));
-
             Assert.NotNull(pokemon);
 
-            pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build("bulbasaur"));
+            //pokemon = await (new DatabaseSchemas.Pokemon.Builder().Build("bulbasaur"));
+            Assert.NotNull(pokemon);
 
+            var function = new GetPokemonFunction();
+            APIGatewayProxyRequest request = new APIGatewayProxyRequest();
+            request.PathParameters = new Dictionary<string, string>() { { "id", 3.ToString() } };
+            var context = new TestLambdaContext();
+            var response  = await function.Execute(request, context);
+
+            pokemon = JsonConvert.DeserializeObject<ResponseModels.PokemonResponse>(response.Body);
             Assert.NotNull(pokemon);
         }
 

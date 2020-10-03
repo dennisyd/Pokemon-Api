@@ -37,6 +37,27 @@
                     "PostResource": {
                         "Type": "Api",
                         "Properties": {
+                            "Path": "/pokemon/{id}",
+                            "Method": "GET"
+                        }
+                    }
+                }
+            }
+        },
+        "GetPokemonWithLevel" : {
+            "Type" : "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "Pokemon_API::Pokemon_API.Functions.GetPokemonFunction::Execute",
+                "Runtime": "dotnetcore2.1",
+                "CodeUri": "publish/Pokemon_API",
+                "MemorySize": 2048,
+                "Timeout": 30,
+                "Role": null,
+                "Policies": [ "AWSLambdaBasicExecutionRole" ],
+                "Events": {
+                    "PostResource": {
+                        "Type": "Api",
+                        "Properties": {
                             "Path": "/pokemon/{id}/{level}",
                             "Method": "GET"
                         }
@@ -65,7 +86,28 @@
                 }
             }
         },
-        "GetDamageMultiplier" : {
+        "GetDamageMultiplierOneType" : {
+            "Type" : "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute",
+                "Runtime": "dotnetcore2.1",
+                "CodeUri": "publish/Pokemon_API",
+                "MemorySize": 2048,
+                "Timeout": 30,
+                "Role": null,
+                "Policies": [ "AWSLambdaBasicExecutionRole" ],
+                "Events": {
+                    "PostResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/damage_multiplier/{type1}",
+                            "Method": "GET"
+                        }
+                    }
+                }
+            }
+        },
+        "GetDamageMultiplierTwoTypes" : {
             "Type" : "AWS::Serverless::Function",
             "Properties": {
                 "Handler": "Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute",

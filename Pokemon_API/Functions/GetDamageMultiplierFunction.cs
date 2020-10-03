@@ -23,10 +23,10 @@ namespace Pokemon_API.Functions
         {
         }
 
-        public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
+        public async Task<APIGatewayProxyResponse> Execute(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            string type1 = request.PathParameters["type1"];
-            string type2 = request.PathParameters["type2"];
+            _ = (request.PathParameters.TryGetValue("type1", out string type1));
+            _ = (request.PathParameters.TryGetValue("type2", out string type2));
 
             if (string.IsNullOrEmpty(type1))
             {
@@ -34,7 +34,7 @@ namespace Pokemon_API.Functions
             }
 
             type1 = Uri.UnescapeDataString(type1);
-            type2 = Uri.UnescapeDataString(type2);
+            type2 = (!string.IsNullOrEmpty(type2)) ? Uri.UnescapeDataString(type2) : type2;
 
             try
             {

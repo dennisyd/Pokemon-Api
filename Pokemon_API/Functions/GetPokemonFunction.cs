@@ -17,7 +17,7 @@ using Pokemon_API.DatabaseSchemas.Pokemon;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
-namespace Pokemon_API
+namespace Pokemon_API.Functions
 {
     public class GetPokemonFunction
     {
@@ -28,10 +28,10 @@ namespace Pokemon_API
         {
         }
 
-        public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
+        public async Task<APIGatewayProxyResponse> Execute(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            string id = request.PathParameters["id"];
-            string level = request.PathParameters["level"];
+            _ = (request.PathParameters.TryGetValue("id", out string id));
+            _ = (request.PathParameters.TryGetValue("level", out string level));
 
             if (string.IsNullOrEmpty(id))
             {
@@ -39,7 +39,7 @@ namespace Pokemon_API
             }
 
             id = Uri.UnescapeDataString(id);
-
+            level = (!string.IsNullOrEmpty(level)) ? Uri.UnescapeDataString(level) : level;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Pokemon_API
         {
             PokemonResponse response = await new Builder().Build(id);
             //do level adjustment logic here
-            return null;
+            return response;
         }
     }
 }

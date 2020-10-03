@@ -64,7 +64,7 @@ namespace Pokemon_API.Extensions
             catch(Exception ex)
             {
                 Exception e = new Exception($":: {Database} | {TableName} | GET | {ex.Message} | QUERY | {query} ::");
-                throw e;
+                return null;
             }
         }
 
@@ -162,6 +162,18 @@ namespace Pokemon_API.Extensions
         public virtual T DataReaderConverter(MySqlDataReader reader)
         {
             return default(T);
+        }
+
+        public Dictionary<string, object> SerializeReader(MySqlDataReader reader)
+        {
+            var results = new Dictionary<string, object>();
+            var cols = new List<string>();
+            for (var i = 0; i < reader.FieldCount; i++) { 
+            cols.Add(reader.GetName(i));
+                reader.GetValue(i);
+                results.Add(reader.GetName(i), reader.GetValue(i));
+            }
+            return results;
         }
     }
 }

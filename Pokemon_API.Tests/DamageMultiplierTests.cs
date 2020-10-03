@@ -12,6 +12,8 @@ using Pokemon_API;
 
 using Pokemon_API.Extensions;
 using Pokemon_API.DatabaseSchemas.DamageMultiplier;
+using Pokemon_API.Functions;
+using Newtonsoft.Json;
 
 namespace Pokemon_API.Tests
 {
@@ -30,6 +32,15 @@ namespace Pokemon_API.Tests
         {
             ResponseModels.MultiplierResponse dmgMult = await (new DatabaseSchemas.DamageMultiplier.Builder().Build("normal"));
 
+            Assert.NotNull(dmgMult);
+
+            var function = new GetDamageMultiplierFunction();
+            APIGatewayProxyRequest request = new APIGatewayProxyRequest();
+            request.PathParameters = new Dictionary<string, string>() { { "type1", "normal" } };
+            var context = new TestLambdaContext();
+            var response = await function.Execute(request, context);
+
+            dmgMult = JsonConvert.DeserializeObject<ResponseModels.MultiplierResponse>(response.Body);
             Assert.NotNull(dmgMult);
         }
 

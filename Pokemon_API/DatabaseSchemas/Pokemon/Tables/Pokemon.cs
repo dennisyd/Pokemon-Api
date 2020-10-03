@@ -72,49 +72,60 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon.Tables
 
         public override Models.Pokemon DataReaderConverter(MySqlDataReader reader)
         {
-            int id = int.Parse(reader["id"].ToString());
-            string name = reader["name"].ToString();
-            int number = int.Parse(reader["number"].ToString());
-            float height_m = float.Parse(reader["height_m"].ToString());
-            float weight_kg = float.Parse(reader["weight_kg"].ToString());
-            string color = reader["color"].ToString();
-            string gender = (!string.IsNullOrEmpty(reader["gender"].ToString())) ? reader["gender"].ToString() : null;
-            bool? canHatch = null;
-            if (!string.IsNullOrEmpty(reader["canHatch"].ToString()))
-            {
-                bool overrideHatch;
-                canHatch = (bool.TryParse(reader["canHatch"].ToString(), out overrideHatch)) ? overrideHatch : canHatch;
-            }
-            string prevo = (!string.IsNullOrEmpty(reader["prevo"].ToString())) ? reader["prevo"].ToString() : null;
+            Dictionary<string, object> dict = SerializeReader(reader);
+            _ = (dict.TryGetValue("id", out object id));
+            _ = (dict.TryGetValue("name", out object name));
+            _ = (dict.TryGetValue("number", out object number));
+            _ = (dict.TryGetValue("height_m", out object height_m));
+            _ = (dict.TryGetValue("weight_kg", out object weight_kg));
+            _ = (dict.TryGetValue("color", out object color));
+            _ = (dict.TryGetValue("gender", out object gender));
+            _ = (dict.TryGetValue("prevo", out object prevo));
+            _ = (dict.TryGetValue("evoLevel", out object evoLevel));
+            _ = (dict.TryGetValue("canHatch", out object canHatch));
+            _ = (dict.TryGetValue("evoType", out object evoType));
+            _ = (dict.TryGetValue("evoItem", out object evoItem));
+            _ = (dict.TryGetValue("evoCondition", out object evoCondition));
 
-            int? evolutionLevel;
-            if (string.IsNullOrEmpty(reader["evoLevel"].ToString()))
+            int id_val = int.Parse(id.ToString());
+            string name_val = name.ToString();
+            int number_val = int.Parse(number.ToString());
+            float height_m_val = float.Parse(height_m.ToString());
+            float weight_kg_val = float.Parse(weight_kg.ToString());
+            string color_val = color.ToString();
+            string gender_val = gender.ToString();
+            string prevo_val = prevo.ToString();
+
+            bool? canHatch_val = null;
+            if (!string.IsNullOrEmpty(canHatch.ToString()))
             {
-                evolutionLevel = null;
-            }
-            else
-            {
-                evolutionLevel = int.Parse(reader["evolutionLevel"].ToString());
+                canHatch_val = bool.Parse(canHatch.ToString());
             }
 
-            string evoType = (!string.IsNullOrEmpty(reader["evoType"].ToString())) ? reader["evoType"].ToString() : null;
-            string evoItem = (!string.IsNullOrEmpty(reader["evoItem"].ToString())) ? reader["evoItem"].ToString() : null;
-            string evoCondition = (!string.IsNullOrEmpty(reader["evoCondition"].ToString())) ? reader["evoCondition"].ToString() : null;
+            int? evoLevel_val = null;
+            if (!string.IsNullOrEmpty(evoLevel.ToString())){
+                evoLevel_val = int.Parse(evoLevel.ToString());
+            }
+
+            string evoType_val = evoType.ToString();
+            string evoItem_val = evoItem.ToString();
+            string evoCondition_val = evoCondition.ToString();
+
 
             return new Models.Pokemon(
-                id: id,
-                name: name,
-                number: number,
-                height_m: height_m,
-                weight_kg: weight_kg,
-                color: color,
-                gender: gender,
-                canHatch: canHatch,
-                prevo: prevo,
-                evoLevel: evolutionLevel,
-                evoType: evoType,
-                evoItem: evoItem,
-                evoCondition: evoCondition
+                id: id_val,
+                name: name_val,
+                number: number_val,
+                height_m: height_m_val,
+                weight_kg: weight_kg_val,
+                color: color_val,
+                gender: gender_val,
+                canHatch: canHatch_val,
+                prevo: prevo_val,
+                evoLevel: evoLevel_val,
+                evoType: evoType_val,
+                evoItem: evoItem_val,
+                evoCondition: evoCondition_val
             );
         }
     }

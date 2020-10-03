@@ -14,40 +14,37 @@ namespace Pokemon_API.ResponseModels
         [JsonProperty(PropertyName = "number", Order = 2)]
         public int Number { get; set; }
 
-        [JsonProperty(PropertyName = "species", Order = 3)]
-        public string Species { get; set; }
-
-        [JsonProperty(PropertyName = "types", Order = 4)]
+        [JsonProperty(PropertyName = "types", Order = 3)]
         public List<string> Types { get; set; }
 
-        [JsonProperty(PropertyName = "genderRatio", Order = 5, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "genderRatio", Order = 4, NullValueHandling = NullValueHandling.Ignore)]
         public GenderRatio GenderRatio { get; set; }
 
-        [JsonProperty(PropertyName = "baseStats", Order = 6)]
+        [JsonProperty(PropertyName = "baseStats", Order = 5)]
         public BaseStats BaseStats { get; set; }
 
-        [JsonProperty(PropertyName = "moves", Order = 7, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "moves", Order = 6, NullValueHandling = NullValueHandling.Ignore)]
         public List<Moves> Moves { get; set; }
 
-        [JsonProperty(PropertyName = "abilities", Order = 8)]
+        [JsonProperty(PropertyName = "abilities", Order = 7)]
         public List<string> Abilities { get; set; }
 
-        [JsonProperty(PropertyName = "height", Order = 9)]
+        [JsonProperty(PropertyName = "height", Order = 8)]
         public float Height { get; set; }
 
-        [JsonProperty(PropertyName = "weight", Order = 10)]
+        [JsonProperty(PropertyName = "weight", Order = 9)]
         public float Weight { get; set; }
 
-        [JsonProperty(PropertyName = "color", Order = 11)]
+        [JsonProperty(PropertyName = "color", Order = 10)]
         public string Color { get; set; }
 
-        [JsonProperty(PropertyName = "evolutions", Order = 12, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "evolutions", Order = 11, NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Evolutions { get; set; }
 
-        [JsonProperty(PropertyName = "evolutionLevel", Order = 13, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "evolutionLevel", Order = 12, NullValueHandling = NullValueHandling.Ignore)]
         public int? EvolutionLevel { get; set; }
 
-        [JsonProperty(PropertyName = "eggGroups", Order = 14, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "eggGroups", Order = 13, NullValueHandling = NullValueHandling.Ignore)]
         public List<string> EggGroups { get; set; }
 
         public PokemonResponse()
@@ -63,13 +60,13 @@ namespace Pokemon_API.ResponseModels
             this.GenderRatio = genderRatio;
             this.BaseStats = baseStats;
             this.Moves = moves;
-            this.Abilities = (abilities.Count != 0) ? abilities : null;
+            this.Abilities = (abilities != null) ? (abilities.Count == 0) ? null : abilities : abilities;
             this.Height = pokemon.Height_M;
             this.Weight = pokemon.Weight_Kg;
             this.Color = pokemon.Color;
-            this.Evolutions = (evolutions.Count != 0) ? evolutions : null;
+            this.Evolutions = (evolutions != null) ? (evolutions.Count == 0) ? null : evolutions : evolutions;
             this.EvolutionLevel = pokemon.EvoLevel;
-            this.EggGroups = (eggGroup.Count != 0) ? eggGroup : null;
+            this.EggGroups = (eggGroup != null) ? (eggGroup.Count == 0) ? null : eggGroup : eggGroup;
         }
     }
 }

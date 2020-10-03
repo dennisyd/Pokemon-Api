@@ -42,16 +42,13 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
             List<string> abilities = await getAbilities(pokemon.Number);
             Models.BaseStats baseStats = await baseStatsTable.Get(pokemon.Number);
             List<string> eggGroups = await getEggGroups(pokemon.Number);
-            List<string> evolutions = (await evolutionsTable.Get(pokemon.Number)).Select(e => e.Evolution).ToList();
+            List<string> evolutions = await getEvolutions(pokemon.Number);
             Models.GenderRatio genderRatio = await genderRatioTable.Get(pokemon.Number);
             List<Models.Moves> moves = await movesTable.Get(pokemon.Number);
             moves = (moves.Count > 0) ? null : moves;
 
             Models.Types typesModel = await typesTable.Get(pokemon.Number);
-            List<string> types = new List<string>() { typesModel.Type1 };
-            if (!string.IsNullOrEmpty(typesModel.Type2)) {
-                types.Add(typesModel.Type2);
-            }
+            List<string> types = await getTypes(pokemon.Number);
 
             return new PokemonResponse(pokemon, genderRatio, baseStats, moves,
                 abilities, evolutions, eggGroups, types);
@@ -81,5 +78,14 @@ namespace Pokemon_API.DatabaseSchemas.Pokemon
             return list;
         }
 
+        private async Task<List<string>> getEvolutions(int pokemonNumber)
+        {
+            List<Models.Evolutions> evos = await evolutionsTable.Get(pokemonNumber);
+            if(evos == null || evos.Count == 0)
+            {
+                return null;
+            }
+            return evos.Select(e => e.Evolution).ToList();
+        }
     }
 }

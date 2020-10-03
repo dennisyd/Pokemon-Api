@@ -23,9 +23,9 @@ namespace Pokemon_API.Functions
         {
         }
 
-        public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
+        public async Task<APIGatewayProxyResponse> Execute(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            string id = request.PathParameters["id"];
+            _ = (request.PathParameters.TryGetValue("id", out string id));
 
             if (string.IsNullOrEmpty(id))
             {
@@ -33,6 +33,7 @@ namespace Pokemon_API.Functions
             }
 
             id = Uri.UnescapeDataString(id);
+            Console.WriteLine($"{id}");
 
             try
             {
