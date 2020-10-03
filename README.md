@@ -176,7 +176,7 @@ aws cloudformation package \
 
 aws cloudformation deploy \
     --template-file packaged.yaml \
-    --stack-name timeinterpreter \
+    --stack-name pokemon_api \
     --capabilities CAPABILITY_IAM \
     --parameter-overrides MyParameterSample=MySampleValue
 
