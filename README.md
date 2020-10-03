@@ -2,7 +2,7 @@
 
 Pokemon Data API
 
-/Pokemon/{id}/{level}
+/pokemon/{id}/{level}
 
 - id : number or name
 
