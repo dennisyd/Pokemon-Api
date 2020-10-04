@@ -1,0 +1,113 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Pokemon API
+Parameters:
+  Stage:
+    Description: The environment this application is deployed to (should be dev, staging
+      or prod)
+    Default: dev
+    Type: String
+Globals:
+  Api:
+    Cors:
+      AllowMethods: '''*'''
+      AllowHeaders: '''*'''
+      AllowOrigin: '''*'''
+Resources:
+  GetPokemon:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Pokemon_API::Pokemon_API.Functions.GetPokemonFunction::Execute
+      Runtime: dotnetcore2.1
+      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      MemorySize: 2048
+      Timeout: 30
+      Role: null
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /pokemon/{id}
+            Method: GET
+  GetPokemonWithLevel:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Pokemon_API::Pokemon_API.Functions.GetPokemonFunction::Execute
+      Runtime: dotnetcore2.1
+      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      MemorySize: 2048
+      Timeout: 30
+      Role: null
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /pokemon/{id}/{level}
+            Method: GET
+  GetMove:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Pokemon_API::Pokemon_API.Functions.GetMoveFunction::Execute
+      Runtime: dotnetcore2.1
+      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      MemorySize: 128
+      Timeout: 30
+      Role: null
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /moves/{id}
+            Method: GET
+  GetDamageMultiplierOneType:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute
+      Runtime: dotnetcore2.1
+      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      MemorySize: 2048
+      Timeout: 30
+      Role: null
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /damage_multiplier/{type1}
+            Method: GET
+  GetDamageMultiplierTwoTypes:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute
+      Runtime: dotnetcore2.1
+      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      MemorySize: 2048
+      Timeout: 30
+      Role: null
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /damage_multiplier/{type1}/{type2}
+            Method: GET
+Outputs:
+  ApiURL:
+    Description: API endpoint URL
+    Value:
+      Fn::Join:
+      - ''
+      - - https://
+        - Ref: ServerlessRestApi
+        - .execute-api.
+        - Ref: AWS::Region
+        - .amazonaws.com/
+        - Ref: Stage
