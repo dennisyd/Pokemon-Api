@@ -1,5 +1,8 @@
 # Pokemon API
 
+Base URl: https://4q7ajbemgk.execute-api.us-east-2.amazonaws.com/Prod
+Example: https://4q7ajbemgk.execute-api.us-east-2.amazonaws.com/Prod/pokemon/pikachu
+
 Pokemon Data API
 
 /pokemon/{id}/{level}
