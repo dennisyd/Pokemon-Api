@@ -169,7 +169,7 @@ namespace Pokemon_API.Extensions
             var results = new Dictionary<string, object>();
             var cols = new List<string>();
             for (var i = 0; i < reader.FieldCount; i++) { 
-            cols.Add(reader.GetName(i));
+                cols.Add(reader.GetName(i));
                 reader.GetValue(i);
                 results.Add(reader.GetName(i), reader.GetValue(i));
             }
