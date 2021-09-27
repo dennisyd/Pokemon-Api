@@ -18,8 +18,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Pokemon_API::Pokemon_API.Functions.GetPokemonFunction::Execute
-      Runtime: dotnetcore2.1
-      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      Runtime: dotnetcore3.1
+      CodeUri: s3://deploys.my-sid/4a32bdf1689d745536b0055a9b470875
       MemorySize: 2048
       Timeout: 30
       Role: null
@@ -35,8 +35,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Pokemon_API::Pokemon_API.Functions.GetPokemonFunction::Execute
-      Runtime: dotnetcore2.1
-      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      Runtime: dotnetcore3.1
+      CodeUri: s3://deploys.my-sid/4a32bdf1689d745536b0055a9b470875
       MemorySize: 2048
       Timeout: 30
       Role: null
@@ -52,8 +52,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Pokemon_API::Pokemon_API.Functions.GetMoveFunction::Execute
-      Runtime: dotnetcore2.1
-      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      Runtime: dotnetcore3.1
+      CodeUri: s3://deploys.my-sid/4a32bdf1689d745536b0055a9b470875
       MemorySize: 128
       Timeout: 30
       Role: null
@@ -69,8 +69,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute
-      Runtime: dotnetcore2.1
-      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      Runtime: dotnetcore3.1
+      CodeUri: s3://deploys.my-sid/4a32bdf1689d745536b0055a9b470875
       MemorySize: 2048
       Timeout: 30
       Role: null
@@ -86,8 +86,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Pokemon_API::Pokemon_API.Functions.GetDamageMultiplierFunction::Execute
-      Runtime: dotnetcore2.1
-      CodeUri: s3://deploys.my-sid/014c0d1c699517089be159ee993e11d3
+      Runtime: dotnetcore3.1
+      CodeUri: s3://deploys.my-sid/4a32bdf1689d745536b0055a9b470875
       MemorySize: 2048
       Timeout: 30
       Role: null
