@@ -102,7 +102,7 @@ sam package --template-file template.yaml --output-template-file packaged.yaml -
 Next, the following command will create a Cloudformation Stack and deploy your SAM resources.
 
 ```bash
-sam deploy --template-file packaged.yaml --stack-name TimeInterpreter --capabilities CAPABILITY_IAM
+sam deploy --template-file packaged.yaml --stack-name PokemonApi --capabilities CAPABILITY_IAM
 ```
 
 > **See [Serverless Application Model (SAM) HOWTO Guide](https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md) for more details in how to get started.**
